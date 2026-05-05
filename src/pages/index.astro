@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon as AstroIcon } from 'astro-icon/components';
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
 // Page section components
@@ -22,18 +23,21 @@ const projects = (await getCollection('work'))
 // https://docs.astro.build/basics/astro-components/
 ---
 
-<BaseLayout>
+<BaseLayout title="Home | Marcus Levine" description="Home page of Marcus Levine">
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Marcus"
-					tagline="I help people and organizations implement meaningful change using a wide range of skills and modalities"
+					tagline="I help people and organizations implement meaningful change using a wide range of skills"
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Data Generalist</Pill>
+						<Pill><AstroIcon name="mdi:lightbulb-on-outline" size="1.33em" /> Philosopher</Pill>
+						<Pill><Icon icon="code" size="1.33em" /> Technologist</Pill>
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
+						<Pill><Icon icon="list" size="1.33em" /> Consultant</Pill>
+						<Pill><Icon icon="heart" size="1.33em" /> Coach</Pill>
 						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
 					</div>
 				</Hero>
@@ -112,7 +116,11 @@ const projects = (await getCollection('work'))
 	}
 
 	.roles {
-		display: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.hero img {
@@ -132,9 +140,9 @@ const projects = (await getCollection('work'))
 		}
 
 		.roles {
+			align-items: flex-start;
+			justify-content: flex-start;
 			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
 		}
 
 		.hero img {

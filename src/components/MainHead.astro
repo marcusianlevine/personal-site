@@ -4,15 +4,34 @@ import '../styles/global.css';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	ogImage?: string;
 }
 
 const {
 	title = 'Marcus Levine | Speaker, Writer, Consultant',
 	description = 'The personal site of Marcus Levine',
+	ogImage = '/og-default.png',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const ogImageURL = new URL(ogImage, Astro.site)
 ---
 
 <meta charset="UTF-8" />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content="website" />
+
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
@@ -46,3 +65,30 @@ const {
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
 </script>
+<script type="application/ld+json">
+	{JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": "Marcus Levine",
+	"url": "https://marcuslevine.com",
+	"sameAs": [
+		"https://github.com/marcusianlevine",
+		"https://linkedin.com/in/marcuslevine",
+		"https://twitter.com/marcusianl"
+	]
+	})}
+</script>
+{import.meta.env.PROD && (
+	<script
+		is:inline
+		defer
+		src="https://analytics.marcuslevine.com/script.js"
+		data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
+		data-host-url="https://analytics.marcuslevine.com"
+	></script>
+	<script is:inline>
+		document.addEventListener('astro:page-load', () => {
+			window.umami?.track()
+		})
+	</script>
+)}

@@ -10,30 +10,16 @@ import Nav from '../components/Nav.astro';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
+
 ---
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-		<MainHead title={title} description={description} />
-		{import.meta.env.PROD && (
-		<script
-			is:inline
-			defer
-			src="https://analytics.marcuslevine.com/script.js"
-			data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
-			data-host-url="https://analytics.marcuslevine.com"
-		></script>
-		<script is:inline>
-			document.addEventListener('astro:page-load', () => {
-				window.umami?.track()
-			})
-		</script>
-		)}
+		<MainHead title={title} description={description} ogImage={ogImage} />
 	</head>
 	<body>
 		<div class="stack backgrounds">
