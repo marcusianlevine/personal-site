@@ -65,19 +65,17 @@ const ogImageURL = new URL(ogImage, Astro.site)
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
 </script>
-<script type="application/ld+json">
-	{JSON.stringify({
-	"@context": "https://schema.org",
-	"@type": "Person",
-	"name": "Marcus Levine",
-	"url": "https://marcuslevine.com",
-	"sameAs": [
-		"https://github.com/marcusianlevine",
-		"https://linkedin.com/in/marcuslevine",
-		"https://twitter.com/marcusianl"
-	]
-	})}
-</script>
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marcus Levine",
+  "url": "https://marcuslevine.com",
+  "sameAs": [
+    "https://github.com/marcusianlevine",
+    "https://linkedin.com/in/marcuslevine",
+    "https://twitter.com/marcusianl"
+  ]
+})} />
 {import.meta.env.PROD && (
 	<script
 		is:inline
