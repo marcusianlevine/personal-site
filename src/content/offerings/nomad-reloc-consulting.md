@@ -1,0 +1,35 @@
+---
+title: Nomad & Relocation Consulting
+publishDate: 2026-05-13 00:00:00
+img: /assets/stock-4.jpg
+img_alt: Nomads living the life and retirees relocating internationally to peace and tranquility within their budget.
+description: |
+  I help nomads and retirees navigate the complex world of international travel & relocation, finding the perfect balance between freedom, comfort, and budget.
+tags:
+  - Consulting
+  - Nomad
+  - Expat
+---
+
+# Becoming a Nomad
+
+Three years ago, I dreamed of traveling the world. Sitting in my $3000/month NYC apartment with a remote job and a financially-dependent girlfriend, I knew I needed to make a change. But the idea of traveling internationally full-time was overwhelming. How would I maintain my basic services like cell phone service and banking? Where would I store all my belongings? How would I navigate visas and taxes?
+
+I spent months researching, but the information was scattered across forums, blogs, and travel guides. I knew I wasn't the only one facing these challenges, so I decided to create a comprehensive guide to help others navigate the world of digital nomadism and international relocation.
+
+This guide covers everything from choosing your first nomad destination to setting up your digital infrastructure, finding remote work opportunities, and managing the legal and financial aspects of living abroad. Whether you're a seasoned traveler looking to extend your stay or a complete beginner considering a life abroad, this guide will provide you with the knowledge and confidence to make informed decisions about your nomad journey.
+
+# Relocating Internationally
+
+After about a year of being a full-time nomad myself, I went back to my hometown in Florida to visit my mom (who was storing my stuff in her apartment) and she mentioned financial hardship and eventually asked me for money. I was already giving her some money for rent since I was technically living with her while I traveled, but she wanted substantially more - what amounted to almost half my monthly take-home pay. I told her I couldn't do that - but I would be happy to help her assess her options.
+
+The options basically came down to:
+1. Keep struggling to keep her head about water in Florida even though she was past retirement age
+2. Move in with one of her kids - which she didn't want and none of us kids want either
+3. Relocate to a place with substantially lower cost of living
+
+Option 3 was the obvious choice. She speaks Spanish and had always wanted to live in a Spanish-speaking country. She wanted to look at Spain but immigration and cost of living are complex there - so I suggested a few options in South America that have a Pensionado visa (allowing foreigners with guaranteed income like Social Security or a pension to live in the country indefinitely).
+
+She was curious about Panama so we went to visit for 2 weeks and she found a little town she loved. Now she's been happily living there for a year and a half on a budget that is well within her Social Security income. The lifestyle there has helped her lose weight, connected her with a loving community, and brought joy back into her life after years of struggling in Florida.
+
+I see the way that international relocation totally changed my mom's life and gave her the opportunity to retire with dignity. Now I help other people who have dreamed of living abroad to identify destinations and work through resistance, to build the new life of their dreams in a foreign country.

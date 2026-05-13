@@ -3,9 +3,9 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 export const collections = {
-	work: defineCollection({
-		// Load Markdown files in the src/content/work directory.
-		loader: glob({ base: './src/content/work', pattern: '**/*.md' }),
+	offerings: defineCollection({
+		// Load Markdown files in the src/content/offerings directory.
+		loader: glob({ base: './src/content/offerings', pattern: '**/*.md' }),
 		schema: z.object({
 			title: z.string(),
 			description: z.string(),
