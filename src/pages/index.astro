@@ -29,7 +29,7 @@ const offerings = (await getCollection('offerings'))
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Marcus"
-					tagline="I help people and organizations implement meaningful change using a wide range of skills"
+					tagline="I help people and organizations flourish 🌱"
 					align="start"
 				>
 					<div class="roles">
@@ -43,7 +43,7 @@ const offerings = (await getCollection('offerings'))
 				</Hero>
 
 				<img
-					alt="Marcus Levine smiling in a green shirt with a cap"
+					alt="Marcus Levine smiling in a green shirt"
 					width="480"
 					height="620"
 					src="/assets/portrait.jpg"
@@ -53,17 +53,19 @@ const offerings = (await getCollection('offerings'))
 			<Skills />
 		</div>
 
+		<ContactCTA />
+
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Offerings</h3>
-					<p>Take a look at the services I offer to my clients.</p>
+					<p>Take a look at the services I offer.</p>
 				</header>
 
 				<div class="gallery">
 					<Grid variant="offset">
 						{
-							offerings.map((offering) => (
+							offerings.map((offering: any) => (
 								<li>
 									<PortfolioPreview offering={offering} />
 								</li>
@@ -79,30 +81,7 @@ const offerings = (await getCollection('offerings'))
 					</CallToAction>
 				</div>
 			</section>
-
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Testimonials</h3>
-					<p>
-						I have been fortunate to work with incredible people and organizations. Here's what they say about my work:
-					</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Blah blah blah! - Sandra', 'Meow meow meow - Kitty', 'Woof woof woof - Doggo'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-			</section>
 		</main>
-
-		<ContactCTA />
 	</div>
 </BaseLayout>
 

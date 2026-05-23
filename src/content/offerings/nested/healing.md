@@ -6,8 +6,8 @@ img_alt: Examples of healing modalities I work with
 description: |
   I use a variety of modalities to help people heal from chronic pain, unresolved trauma, and anxiety.
 tags:
-  - Healing
   - Bodywork
+  - Meditation
   - Energy Work
 ---
 
