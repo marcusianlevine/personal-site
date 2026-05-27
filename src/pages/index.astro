@@ -9,7 +9,7 @@ import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
+import OfferingPreview from '../components/OfferingPreview.astro';
 import Skills from '../components/Skills.astro';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -49,8 +49,8 @@ const offerings = (await getCollection('offerings'))
 					src="/assets/portrait.jpg"
 				/>
 			</header>
-
-			<Skills />
+			<!-- TODO: make this section more meaningful if you're going to include it -->
+			<!-- <Skills /> -->
 		</div>
 
 		<ContactCTA />
@@ -59,7 +59,7 @@ const offerings = (await getCollection('offerings'))
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Offerings</h3>
-					<p>Take a look at the services I offer.</p>
+					<p>Explore the services I offer.</p>
 				</header>
 
 				<div class="gallery">
@@ -67,7 +67,7 @@ const offerings = (await getCollection('offerings'))
 						{
 							offerings.map((offering: any) => (
 								<li>
-									<PortfolioPreview offering={offering} />
+									<OfferingPreview offering={offering} />
 								</li>
 							))
 						}

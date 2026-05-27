@@ -34,9 +34,9 @@ const { Content } = await render(entry);
 					<a class="back-link" href="/offerings/"><Icon icon="arrow-left" /> Offerings</a>
 					<Hero title={entry.data.title} align="start">
 						<div class="details">
-							<div class="tags">
+							<!-- <div class="tags">
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-							</div>
+							</div> -->
 							<p class="description">{entry.data.description}</p>
 						</div>
 					</Hero>
@@ -113,8 +113,9 @@ const { Content } = await render(entry);
 		font-family: var(--font-brand);
 		font-weight: 600;
 		line-height: 1.1;
-		padding-inline-start: 1.5rem;
-		border-inline-start: 0.25rem solid var(--accent-dark);
+		padding: 1.5rem;
+		border: 0.25rem solid var(--accent-dark);
+		border-radius: 20px;
 		color: var(--gray-0);
 	}
 
@@ -141,10 +142,6 @@ const { Content } = await render(entry);
 		.details {
 			flex-direction: row;
 			gap: 2.5rem;
-		}
-
-		.content :global(blockquote) {
-			font-size: var(--text-2xl);
 		}
 	}
 </style>

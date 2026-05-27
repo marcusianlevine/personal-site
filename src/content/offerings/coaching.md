@@ -4,12 +4,38 @@ publishDate: 2026-05-13 00:00:00
 img: /assets/stock-1.jpg
 img_alt: Coaching client building the life of their dreams
 description: |
-  I help people break through challenges and overcome resistance to building the life of their dreams. I love working with people who are navigating challenges with relationships, sexuality and addiction (specifically cannabis and caffeine addiction).
+  I help people break through challenges and overcome resistance to building the life of their dreams. I love working with people who are navigating challenges with relationships, intimacy/sexuality and addiction (specifically cannabis and caffeine addiction).
 tags: []
 ---
 
+# Specialities
+
 ## Relationships
 
-## Sexuality
+Struggling to find the intimacy and connection you're looking for? Unsure how to approach people you're interested in? Feeling heartbroken or wounded from a previous relationship?
+
+I can help you overcome past relationship wounds and build skills to authentically connect with others. 
+
+## Intimacy & Sexuality
+
+Do you long for more meaningful sexual connection? Do you struggle with shame or guilt around intimacy? Are you unable to articulate your needs and desires?
+
+I can help you explore intimacy and sexuality in a safe and supportive environment, reconnecting you with a sense of both play and sacredness in your intimate connections.
 
 ## Addiction
+
+Do you find yourself compulsively engaging in behaviors that have negative consequences for you in your life? Do you keep repeating the same pattern of trying to kick an unwanted habitual behavior, then inevitably sliding back into dependence?
+
+As someone who has overcome both substance and behavioral addictions myself, I support people like me (and maybe like you) in overcoming addiction and compulsive behaviors.
+
+# Testimonials
+
+> "Marcus broadened my perspective on what intimacy can be. He invited me to explore my deepest desires, opening me up for more pleasure and expression. I always felt safe, seen and heard with him, as we unlocked insights into my relationship history, dynamics and patterns. 
+>
+> &nbsp;
+>
+> With greater respect for myself, now I am able to communicate more effectively, voicing my desires and boundaries, needs and expectations. After working with Marcus, I feel safer and more empowered in my connections."
+> 
+> &nbsp;
+>  
+> — Sandra
