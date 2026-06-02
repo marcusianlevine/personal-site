@@ -33,3 +33,11 @@ Option 3 was the obvious choice. She speaks Spanish and had always wanted to liv
 She was curious about Panama so we went to visit for 2 weeks and she found a little town she loved. Now she's been happily living there for a year and a half on a budget that is well within her Social Security income. The lifestyle there has helped her lose weight, connected her with a loving community, and brought joy back into her life after years of struggling in Florida.
 
 I see the way that international relocation totally changed my mom's life and gave her the opportunity to retire with dignity. Now I help other people who have dreamed of living abroad to identify destinations and work through resistance, to build the new life of their dreams in a foreign country.
+
+# Testimonials
+
+> If you are looking for guidance on the nomadic lifestyle or relocating internationally, Marcus helps you connect all the dots, implement specific tactics, and start living the life of your dreams. His practical, hands-on approach reveals your blindspots. Highly recommend working with him. 
+>
+> &nbsp;
+>
+> — Taylor, USA
