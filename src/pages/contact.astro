@@ -1,0 +1,280 @@
+---
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact | Marcus Levine" description="Contact Marcus Levine">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="Contact Me"
+				tagline="Let's work together!"
+			>
+			</Hero>
+
+			<section>
+                <form method="POST" id="form" class="contact-form">
+
+                    <input type="hidden" name="access_key" value="71cc3900-9ab4-4d85-af03-f5628a7daa3b">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" required placeholder="How can I help you?"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                    <div id="result" class="form-result"></div>
+
+                </form>
+			</section>
+			<section>
+				<h2 class="section-title">Ready to chat?</h2>
+                <p> Schedule a Discovery Call</p>
+                <!-- Cal inline embed code begins -->
+                <div class="cal-embed-container" id="my-cal-inline-discovery"></div>
+                <script type="text/javascript">
+                (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+                Cal("init", "discovery", {origin:"https://app.cal.com"});
+
+                Cal.ns.discovery("inline", {
+                    elementOrSelector:"#my-cal-inline-discovery",
+                    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+                    calLink: "marcuslevine/discovery",
+                });
+
+                // Function to update Cal theme based on current theme
+                function updateCalTheme() {
+                    const isDark = document.documentElement.classList.contains('theme-dark');
+                    Cal.ns.discovery("ui", {
+                        "cssVarsPerTheme": {
+                            "light": {"cal-brand": "#7611a6"},
+                            "dark": {"cal-brand": "#7611a6"}
+                        },
+                        "theme": isDark ? "dark" : "light",
+                        "hideEventTypeDetails": false,
+                        "layout": "month_view"
+                    });
+                }
+
+                // Initial theme set
+                updateCalTheme();
+
+                // Listen for theme changes
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class') {
+                            updateCalTheme();
+                        }
+                    });
+                });
+                observer.observe(document.documentElement, { attributes: true });
+                </script>
+                <!-- Cal inline embed code ends -->
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<script is:inline>
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
+    const formData = new FormData(form);
+    e.preventDefault();
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    result.style.display = "block";
+    result.innerHTML = "Please wait..."
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = json.message;
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+});
+</script>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+		align-items: center;
+		width: 100%;
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		text-align: center;
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		width: 100%;
+		max-width: 600px;
+	}
+
+	@media (min-width: 50em) {
+		.contact-form {
+			max-width: 800px;
+		}
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group label {
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--gray-300);
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		padding: 0.875rem 1rem;
+		font-size: var(--text-base);
+		font-family: inherit;
+		color: var(--gray-0);
+		background-color: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		border-radius: 0.5rem;
+		transition: border-color var(--theme-transition), box-shadow var(--theme-transition);
+	}
+
+	.contact-form input:focus,
+	.contact-form textarea:focus {
+		outline: none;
+		border-color: var(--accent-regular);
+		box-shadow: 0 0 0 3px rgba(0, 97, 28, 0.2);
+	}
+
+	.contact-form input::placeholder,
+	.contact-form textarea::placeholder {
+		color: var(--gray-500);
+	}
+
+	.contact-form textarea {
+		min-height: 150px;
+		resize: vertical;
+	}
+
+	.submit-button {
+		padding: 0.875rem 2rem;
+		font-size: var(--text-base);
+		font-weight: 600;
+		font-family: inherit;
+		color: var(--accent-text-over);
+		background-color: var(--accent-regular);
+		border: none;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: background-color var(--theme-transition), transform var(--theme-transition);
+	}
+
+	.submit-button:hover {
+		background-color: var(--accent-dark);
+		transform: translateY(-1px);
+	}
+
+	.submit-button:active {
+		transform: translateY(0);
+	}
+
+	.form-result {
+		display: none;
+		padding: 1rem;
+		font-size: var(--text-sm);
+		border-radius: 0.5rem;
+		background-color: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		color: var(--gray-200);
+	}
+
+	.cal-embed-container {
+		width: 100%;
+		max-width: 800px;
+		min-height: 600px;
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		section {
+			font-size: var(--text-lg);
+		}
+	}
+</style>

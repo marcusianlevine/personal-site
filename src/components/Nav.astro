@@ -8,6 +8,7 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Offerings', href: '/offerings/' },
 	{ label: 'About', href: '/about/' },
+	{ label: 'Contact', href: '/contact/' },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -132,7 +133,7 @@ const isCurrentPage = (href: string) => {
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
 			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
+			const mediaQueries = window.matchMedia('(min-width: 60em)');
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -265,7 +266,7 @@ const isCurrentPage = (href: string) => {
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
 	}
 
-	@media (min-width: 50em) {
+	@media (min-width: 60em) {
 		nav {
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
