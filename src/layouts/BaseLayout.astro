@@ -28,7 +28,7 @@ const { title, description, ogImage } = Astro.props;
 			<Footer />
 		</div>
 
-		<script>
+		<script is:inline>
 			// Add “loaded” class once the document has completely loaded.
 			addEventListener('load', () => document.documentElement.classList.add('loaded'));
 		</script>
