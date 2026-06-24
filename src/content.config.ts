@@ -4,8 +4,8 @@ import { z } from 'astro/zod';
 
 export const collections = {
 	offerings: defineCollection({
-		// Load Markdown files in the src/content/offerings directory.
-		loader: glob({ base: './src/content/offerings', pattern: '**/*.md' }),
+		// Load Markdown and MDX files in the src/content/offerings directory.
+		loader: glob({ base: './src/content/offerings', pattern: '**/*.{md,mdx}' }),
 		schema: z.object({
 			title: z.string(),
 			description: z.string(),
