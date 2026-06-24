@@ -89,6 +89,37 @@ const { Content } = await render(entry);
 		margin-inline: auto;
 	}
 
+	@media (max-width: 50em) {
+		.description {
+			max-width: 100%;
+		}
+
+		.content {
+			max-width: 100%;
+			padding-inline: 1rem;
+		}
+
+		.content :global(h1) {
+			font-size: var(--text-2xl);
+		}
+
+		.content :global(h2) {
+			font-size: var(--text-xl);
+		}
+
+		.content :global(h3) {
+			font-size: var(--text-lg);
+		}
+
+		.content :global(h4) {
+			font-size: var(--text-md);
+		}
+
+		.content :global(h5) {
+			font-size: var(--text-base);
+		}
+	}
+
 	.content > :global(* + *) {
 		margin-top: 1rem;
 	}
