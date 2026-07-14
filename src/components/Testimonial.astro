@@ -2,17 +2,19 @@
 interface Props {
 	name: string;
 	location: string;
-	photo: string;
+	photo?: string;
 }
 
 const { name, location, photo } = Astro.props;
 ---
 
 <div class="testimonial">
-	<blockquote>
-		<div class="testimonial-header">
-			<img src={photo} alt={name} class="testimonial-photo" />
-		</div>
+	<blockquote class:list={[{ 'with-photo': !!photo }]}>
+		{photo && (
+			<div class="testimonial-header">
+				<img src={photo} alt={name} class="testimonial-photo" />
+			</div>
+		)}
 		<div class="testimonial-content">
 			<slot />
 			&nbsp;
@@ -66,7 +68,7 @@ const { name, location, photo } = Astro.props;
 	}
 
 	@media (min-width: 50em) {
-		blockquote {
+		blockquote.with-photo {
 			display: flex;
 			gap: 2rem;
 			align-items: flex-start;
@@ -83,7 +85,7 @@ const { name, location, photo } = Astro.props;
 			height: 140px;
 		}
 
-		.testimonial-content {
+		blockquote.with-photo .testimonial-content {
 			flex: 1;
 			text-align: left;
 		}
