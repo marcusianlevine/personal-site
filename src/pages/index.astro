@@ -1,40 +1,33 @@
 ---
-import { getCollection } from 'astro:content';
 import { Icon as AstroIcon } from 'astro-icon/components';
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import OfferingPreview from '../components/OfferingPreview.astro';
-import Skills from '../components/Skills.astro';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Content Fetching: List of offerings
-const offerings = (await getCollection('offerings'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
 
-<BaseLayout title="Marcus Levine | Coach, Counselor & Bodyworker" description="Coaching, counseling, and bodywork to help you build the life of your dreams — relationships, addiction and compulsion, chronic pain, and connection.">
+<BaseLayout
+	title="Marcus Levine | Relationship Coach"
+	description="Bringing back in-person dating. Coaching for people who are fed up with the apps and want to approach the people they're attracted to — calmly, confidently, respectfully."
+>
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Marcus"
-					tagline="Coaching and bodywork to help you live the life of your dreams 🌱"
+					tagline="I help you learn to calmly and confidently approach people you're attracted to."
 					align="start"
 				>
 					<div class="roles">
 						<Pill><Icon icon="heart" size="1.33em" /> Coach</Pill>
-						<Pill><AstroIcon name="mdi:human" size="1.33em" /> Bodyworker</Pill>
 						<Pill><AstroIcon name="mdi:lightbulb-on-outline" size="1.33em" /> Philosopher</Pill>
 						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
 					</div>
@@ -47,39 +40,56 @@ const offerings = (await getCollection('offerings'))
 					src="/assets/portrait.jpg"
 				/>
 			</header>
-			<!-- TODO: make this section more meaningful if you're going to include it -->
-			<!-- <Skills /> -->
 		</div>
 
-		<ContactCTA />
-
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
+		<main class="wrapper stack gap-20 lg:gap-30">
+			<section class="section">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Offerings</h3>
-					<p>How I help people, one-on-one.</p>
+					<h3>The mission</h3>
+					<p>
+						Dating apps expand your pool — and make you miserable. I help people develop
+						authentic approach skills, nervous-system regulation, and the emotional maturity to
+						meet someone face-to-face, eye-to-eye.
+					</p>
+					<p>
+						<i><b>Rejection is training, not failure.</b></i>
+					</p>
 				</header>
 
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							offerings.map((offering: any) => (
-								<li>
-									<OfferingPreview offering={offering} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
+				<div class="paths">
+					<article class="path-card">
+						<p class="path-label">Start here — free</p>
+						<h4>Swiper, No Swiping</h4>
+						<p>
+							Why the odds inside the apps are brutal for men — and the game most
+							people stopped playing. The numbers, the reframe, and a free 45-minute live
+							session: <em>Swiped Out: How Dating Apps Keep You Single — and What Actually
+							Works.</em>
+						</p>
+						<CallToAction href="/swiper-no-swiping/">
+							The truth about dating apps
+							<Icon icon="arrow-right" size="1.2em" />
+						</CallToAction>
+					</article>
 
-				<div class="cta">
-					<CallToAction href="/offerings/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
+					<article class="path-card">
+						<p class="path-label">The deep work — 3 months, 1:1</p>
+						<h4>Master the Approach</h4>
+						<p>
+							Learn to calmly and confidently approach people you're attracted to, and speak to
+							them respectfully yet directly. Somatic tools, weekly real-world reps, and a coach
+							in your corner for the scary moments. No pickup lines. No creepiness.
+						</p>
+						<CallToAction href="/master-the-approach/">
+							Explore the container
+							<Icon icon="arrow-right" size="1.2em" />
+						</CallToAction>
+					</article>
 				</div>
 			</section>
 		</main>
+
+		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -134,38 +144,10 @@ const offerings = (await getCollection('offerings'))
 		gap: 2rem;
 	}
 
-	.with-background {
-		position: relative;
-	}
-
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
-
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
-
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
-
 	.section-header {
 		justify-self: center;
 		text-align: center;
-		max-width: 50ch;
+		max-width: 60ch;
 		font-size: var(--text-md);
 		color: var(--gray-300);
 	}
@@ -174,59 +156,52 @@ const offerings = (await getCollection('offerings'))
 		font-size: var(--text-2xl);
 	}
 
+	.paths {
+		display: grid;
+		gap: 1.5rem;
+		max-width: 70rem;
+		margin-inline: auto;
+		width: 100%;
+	}
+
+	.path-card {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 2rem;
+		box-shadow: var(--shadow-sm);
+		color: var(--gray-200);
+	}
+
+	.path-label {
+		font-size: var(--text-sm);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: var(--accent-regular);
+	}
+
+	.path-card h4 {
+		font-size: var(--text-2xl);
+		color: var(--gray-0);
+	}
+
 	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
-
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
-
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
-
 		.section-header h3 {
 			font-size: var(--text-4xl);
 		}
 
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
+		.paths {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
 		}
 
-		.gallery {
-			grid-area: gallery;
-		}
-
-		.cta {
-			grid-area: cta;
-		}
-	}
-
-	/* ====================================================== */
-
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-	}
-
-	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
+		.path-card {
+			padding: 2.5rem;
 		}
 	}
 </style>

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-	title = 'Marcus Levine | Coach & Bodyworker',
-	description = 'Coaching and bodywork to help you build the life of your dreams — relationships & connection, chronic pain & embodiment.',
+	title = 'Marcus Levine | Relationship Coach',
+	description = 'Bringing back in-person dating. Coaching for people who are fed up with the apps and want to approach the people they’re attracted to — calmly, confidently, respectfully.',
 	ogImage = '/og-default.png',
 } = Astro.props;
 
@@ -42,7 +42,7 @@ const ogImageURL = new URL(ogImage, Astro.site)
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
 	rel="stylesheet"
 />
 <script is:inline>
@@ -77,16 +77,18 @@ const ogImageURL = new URL(ogImage, Astro.site)
   ]
 })} />
 {import.meta.env.PROD && (
-	<script
-		is:inline
-		defer
-		src="https://analytics.marcuslevine.com/script.js"
-		data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
-		data-host-url="https://analytics.marcuslevine.com"
-	></script>
-	<script is:inline>
-		document.addEventListener('astro:page-load', () => {
-			window.umami?.track()
-		})
-	</script>
+	<>
+		<script
+			is:inline
+			defer
+			src="https://analytics.marcuslevine.com/script.js"
+			data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
+			data-host-url="https://analytics.marcuslevine.com"
+		></script>
+		<script is:inline>
+			document.addEventListener('astro:page-load', () => {
+				window.umami?.track()
+			})
+		</script>
+	</>
 )}

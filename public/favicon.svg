@@ -1,14 +1,14 @@
 <svg width="128" height="128" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
   <!-- outer filled circle (dark half) -->
-  <circle cx="340" cy="340" r="295" fill="#7611a6"/>
+  <circle cx="340" cy="340" r="295" fill="#c4633f"/>
   <!-- white half + S-curve -->
   <path d="M340,45 A295,295 0 0,1 340,635 A147.5,147.5 0 0,1 340,340 A147.5,147.5 0 0,0 340,45 Z" fill="white"/>
   <!-- large dot backgrounds -->
   <circle cx="340" cy="487.5" r="70" fill="white"/>
-  <circle cx="340" cy="192.5" r="70" fill="#7611a6"/>
+  <circle cx="340" cy="192.5" r="70" fill="#c4633f"/>
   <!-- small contrasting dots -->
-  <circle cx="340" cy="487.5" r="28" fill="#7611a6"/>
+  <circle cx="340" cy="487.5" r="28" fill="#c4633f"/>
   <circle cx="340" cy="192.5" r="28" fill="white"/>
   <!-- outer ring -->
-  <circle cx="340" cy="340" r="295" fill="none" stroke="#7611a6" stroke-width="3"/>
+  <circle cx="340" cy="340" r="295" fill="none" stroke="#c4633f" stroke-width="3"/>
 </svg>

@@ -1,0 +1,161 @@
+---
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Swiped Out — Free Webinar | Marcus Levine"
+	description="Free 45-minute live session: how dating apps keep you single — and what actually works. Register to save your spot."
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-10 register">
+			<Hero
+				title="Swiped Out"
+				tagline="How Dating Apps Keep You Single — and What Actually Works"
+			>
+				<p class="eyebrow">Free 45-minute live session</p>
+			</Hero>
+
+			<section class="content stack gap-4">
+				<p class="datetime">[Date] · [Time] CET · live on video</p>
+				<ul>
+					<li>what the apps genuinely do well — and the two things they can't (and won't) do for you</li>
+					<li>why that leaves in-person, and the body response and two old stories that have made it feel impossible</li>
+					<li>the one honest question that expresses interest without cornering anyone — plus a challenge to practise it this week</li>
+				</ul>
+				<p>
+					This isn't pickup, and it's not about becoming someone you're not — the opposite.
+					You'll learn to show interest honestly, without being creepy, because honesty is the
+					whole antidote to creepy.
+				</p>
+			</section>
+
+			<section class="form-wrap">
+				<form method="POST" action="https://api.web3forms.com/submit" id="form" class="register-form">
+					<input type="hidden" name="access_key" value="71cc3900-9ab4-4d85-af03-f5628a7daa3b" />
+					<input type="hidden" name="subject" value="Webinar registration — Swiped Out" />
+
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name" required placeholder="Your name" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" required placeholder="your@email.com" />
+					</div>
+					<button type="submit" class="submit-button">Save my spot →</button>
+					<p class="under-form">Come nervous. That's the point.</p>
+					<p class="tiny">
+						Register and I'll send you my field note, <a href="/swiper-no-swiping/"><em>Swiper, No Swiping</em></a> —
+						the numbers on why the apps are rigged against the average man, and the game most people stopped playing.
+					</p>
+					<div id="result" class="form-result"></div>
+				</form>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<style>
+	.register {
+		padding-top: 2rem;
+		max-width: 48rem;
+	}
+
+	.eyebrow {
+		font-size: var(--text-sm);
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--accent-regular);
+		font-weight: 600;
+		text-align: center;
+	}
+
+	.content {
+		font-size: var(--text-md);
+		color: var(--gray-200);
+	}
+
+	.datetime {
+		text-align: center;
+		font-weight: 600;
+		color: var(--gray-0);
+	}
+
+	.content ul {
+		padding-inline-start: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-wrap {
+		width: 100%;
+	}
+
+	.register-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 2rem;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	label {
+		font-weight: 600;
+		color: var(--gray-100);
+		font-size: var(--text-sm);
+	}
+
+	input {
+		font: inherit;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--gray-700);
+		border-radius: 0.75rem;
+		background: var(--gray-999);
+		color: var(--gray-0);
+	}
+
+	input:focus {
+		outline: 2px solid var(--accent-regular);
+		border-color: transparent;
+	}
+
+	.submit-button {
+		font: inherit;
+		font-weight: 600;
+		font-size: var(--text-lg);
+		color: var(--accent-text-over);
+		background: var(--gradient-accent-orange);
+		border: none;
+		border-radius: 999rem;
+		padding: 0.9rem 2rem;
+		cursor: pointer;
+		box-shadow: var(--shadow-md);
+	}
+
+	.submit-button:hover {
+		filter: brightness(1.05);
+	}
+
+	.under-form {
+		text-align: center;
+		color: var(--gray-300);
+		font-style: italic;
+	}
+
+	.tiny {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		text-align: center;
+	}
+</style>

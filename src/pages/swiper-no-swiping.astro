@@ -1,0 +1,227 @@
+---
+import CallToAction from '../components/CallToAction.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+	{ big: '~3 : 1', text: 'ratio of men to women on the most popular apps' },
+	{ big: '~2%', text: "of a typical man's right-swipes become a match - 50 swipes to get one match!" },
+	{ big: '30k', text: 'profiles a typical man may swipe to find one relationship' },
+];
+---
+
+<BaseLayout
+	title="Swiper, No Swiping | Marcus Levine"
+	description="Fed up with dating apps? They're addictive by design, plus the odds are stacked against you. Why not play a different game?"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-15 swiper">
+			<Hero
+				title="Swiper, No Swiping."
+				tagline="For those who are sick of dating apps."
+			>
+				<div class="hero-cta">
+					<CallToAction href="/webinar/">
+						Join the free webinar
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+					<p class="cta-note">Swiped Out: How Dating Apps Keep You Single — and What Actually Works · 45 minutes, live</p>
+				</div>
+			</Hero>
+
+			<section class="content stack gap-4">
+				<p>
+					You've probably felt it: weeks of swiping, barely a match. 
+					The apps are brutal.
+				</p>
+				<p>
+					What the apps won't tell you: <strong>the deck is stacked.</strong> These platforms make
+					money when you keep swiping — not when you fall in love and delete them. The numbers
+					for the average guy are especially rough:
+				</p>
+			</section>
+
+			<section class="stats">
+				{
+					stats.map(({ big, text }) => (
+						<div class="stat">
+							<div class="stat-big">{big}</div>
+							<p>{text}</p>
+						</div>
+					))
+				}
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>It feels like a slot machine</h2>
+				<p>
+					Variable rewards, an endless feed, and an invisible ranking system deciding who even
+					sees you. Men swipe right on about 53% of profiles while women swipe right on roughly
+					12% — so a small number of profiles soak up most of the attention from women. 
+					Add a scoreboard that buries "desperate" swiping, and the average guy doesn't 
+					stand a chance.
+				</p>
+				<h2>…and it takes your money, too</h2>
+				<p>
+					Men are more likely to pay for premium and, because matches are scarcer, get far less for
+					it. On the same subscription, men can pay 1.5× to 4.5× more per date than women. One
+					analysis pegged the cost to land a single date on a premium plan at about $56 for men
+					vs. $10 for women. You pay more for worse odds.
+				</p>
+				<p class="pull">
+					None of this means you're undesirable. The apps are designed to keep you swiping.
+				</p>
+				<p class="fine">
+					<strong>An honest caveat:</strong> plenty of good relationships start on apps — maybe
+					yours will. I'm not saying the apps are evil. I'm just pointing out that the odds are
+					terrible for men — and that there's another game most people have stopped playing.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>The better odds are in real life</h2>
+				<p>
+					Think about the math for a second. On the apps you're one of thousands of profiles,
+					ranked and filtered, competing on a photo. In a café, a bookshop, a dance floor, a
+					queue — you're a real human being, politely but directly approaching another human
+					being you're attracted to. Face-to-face, eye-to-eye.
+				</p>
+				<p>That is a completely different game, and the odds are far better.</p>
+				<h3>For the stubborn swiper — one tip</h3>
+				<p>
+					<strong>Swipe like a sniper, not a shotgun.</strong> The single most powerful free lever
+					in the data: men who right-swipe on under 4% of profiles match at about 11.9% — versus
+					2.2% for the guys who swipe right on everyone. That's a 5.4× improvement from
+					selectivity alone. Spray-swiping tells the algorithm you're low-value and hides you. So
+					slow down, be picky. Oh, and put some real effort into your first photo.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>The reframe</h2>
+				<p>
+					The freeze you feel before saying hi isn't a character flaw — it's an untrained nervous
+					system. It's not in your head; it's in your body. So that's where we train it: calm the
+					response, and let rejection become practice instead of defeat.
+				</p>
+				<p>
+					No pickup lines. No creepiness. Just the training you need to walk up and start a
+					conversation with someone you're attracted to.
+				</p>
+			</section>
+
+			<section class="final-cta stack gap-4">
+				<h2>Ready to stop swiping?</h2>
+				<p>
+					I go deeper on all of this — the numbers, how your body reacts, and the one honest
+					question to connect without cornering — in a free 45-minute live session:
+					<strong>Swiped Out: How Dating Apps Keep You Single — and What Actually Works.</strong>
+				</p>
+				<div class="hero-cta">
+					<CallToAction href="/webinar/">
+						Save my spot
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+					<p class="cta-note">Let's bring back in-person dating!</p>
+				</div>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<style>
+	.swiper {
+		padding-top: 2rem;
+	}
+
+	.hero-cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.cta-note {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		max-width: 40ch;
+		text-align: center;
+	}
+
+	.content {
+		max-width: 65ch;
+		margin-inline: auto;
+		width: 100%;
+		font-size: var(--text-md);
+		color: var(--gray-200);
+	}
+
+	.content h2,
+	.content h3 {
+		color: var(--gray-0);
+	}
+
+	.content h2 {
+		font-size: var(--text-2xl);
+	}
+
+	.content h3 {
+		font-size: var(--text-xl);
+	}
+
+	.pull {
+		font-family: var(--font-brand);
+		font-style: italic;
+		font-size: var(--text-xl);
+		color: var(--accent-regular);
+	}
+
+	.fine {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		gap: 1rem;
+		max-width: 65rem;
+		margin-inline: auto;
+		width: 100%;
+	}
+
+	.stat {
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 1.5rem;
+		text-align: center;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.stat-big {
+		font-family: var(--font-brand);
+		font-weight: 700;
+		font-size: var(--text-3xl);
+		color: var(--accent-regular);
+		margin-bottom: 0.5rem;
+	}
+
+	.stat p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+
+	.final-cta {
+		text-align: center;
+		align-items: center;
+		max-width: 65ch;
+		margin-inline: auto;
+	}
+
+	.final-cta h2 {
+		color: var(--gray-0);
+	}
+</style>
