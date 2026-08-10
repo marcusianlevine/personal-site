@@ -10,7 +10,17 @@
       "PowerShell(npm exec -- astro build 2>&1)",
       "PowerShell(node node_modules\\\\astro\\\\bin\\\\astro.mjs build 2>&1)",
       "Bash(npm install *)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(npm view *)",
+      "Bash(npm -v)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{let v=JSON.parse\\(d\\);console.log\\(v.slice\\(-10\\)\\)}\\)\")",
+      "Bash(echo \"exit:$?\")",
+      "WebFetch(domain:github.com)",
+      "Bash(grep -E '\\\\.\\(md|mdx\\)$')",
+      "Bash(npx --yes @astrojs/upgrade --help)",
+      "Bash(npx --yes @astrojs/upgrade)",
+      "Bash(npm audit *)",
+      "Bash(npm run *)"
     ]
   }
 }
