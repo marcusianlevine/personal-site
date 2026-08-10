@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx astro *)",
+      "PowerShell(npm run build 2>&1)",
+      "Bash(./node_modules/.bin/astro build *)",
+      "PowerShell(npx.cmd astro build 2>&1)",
+      "PowerShell(& \"node_modules\\\\.bin\\\\astro.cmd\" build 2>&1)",
+      "PowerShell(& \".\\\\node_modules\\\\.bin\\\\astro.cmd\" build 2>&1)",
+      "PowerShell(npm exec -- astro build 2>&1)",
+      "PowerShell(node node_modules\\\\astro\\\\bin\\\\astro.mjs build 2>&1)",
+      "Bash(npm install *)",
+      "Bash(git mv *)"
+    ]
+  }
+}

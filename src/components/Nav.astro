@@ -6,8 +6,8 @@ import ThemeToggle from './ThemeToggle.astro';
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Swiper No Swiping', href: '/swiper-no-swiping/' },
-	{ label: 'Master the Approach', href: '/master-the-approach/' },
+	{ label: 'Swiper No\nSwiping', href: '/swiper-no-swiping/' },
+	{ label: 'Authentic\nApproach', href: '/authentic-approach/' },
 	{ label: 'About', href: '/about/' },
 	{ label: 'Contact', href: '/contact/' },
 ];
@@ -134,7 +134,7 @@ const isCurrentPage = (href: string) => {
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
 			};
-			const mediaQueries = window.matchMedia('(min-width: 60em)');
+			const mediaQueries = window.matchMedia('(min-width: 64em)');
 			handleViewports(mediaQueries);
 			mediaQueries.addEventListener('change', handleViewports);
 		}
@@ -267,7 +267,7 @@ const isCurrentPage = (href: string) => {
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
 	}
 
-	@media (min-width: 60em) {
+	@media (min-width: 64em) {
 		nav {
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
@@ -291,6 +291,7 @@ const isCurrentPage = (href: string) => {
 		.nav-items {
 			position: relative;
 			flex-direction: row;
+			align-items: center;
 			font-size: var(--text-sm);
 			border-radius: 999rem;
 			border: 0;
@@ -311,6 +312,9 @@ const isCurrentPage = (href: string) => {
 		.link {
 			padding: 0.5rem 1rem;
 			border-radius: 999rem;
+			text-align: center;
+			white-space: pre-line;
+			line-height: 1.2;
 			transition:
 				color var(--theme-transition),
 				background-color var(--theme-transition);
@@ -342,13 +346,26 @@ const isCurrentPage = (href: string) => {
 		}
 	}
 
-	@media (min-width: 60em) {
+	@media (min-width: 64em) {
 		.socials {
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: flex-end;
 			gap: 0;
 		}
 	}
+	/* Wide desktop: enough room for the icons on one row, so put the
+	   page names on one row too (labels and socials single-line together). */
+	@media (min-width: 86em) {
+		.link {
+			white-space: normal;
+		}
+
+		.socials {
+			flex-wrap: nowrap;
+		}
+	}
+
 	@media (forced-colors: active) {
 		.link[aria-current='page'] {
 			color: SelectedItem;

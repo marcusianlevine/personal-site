@@ -1,0 +1,60 @@
+---
+interface Props {
+	/** Last day the banner should show, in YYYY-MM-DD (local time). */
+	cutoffDate?: string;
+	href?: string;
+}
+
+const { cutoffDate = '2026-08-20', href = '/webinar/' } = Astro.props;
+---
+
+<div id="webinar-banner" class="webinar-banner" data-cutoff={cutoffDate} hidden>
+	<a href={href} class="webinar-banner-link">
+		<span class="webinar-banner-text">
+			<strong>Free live webinar:</strong> Swiped Out, Aug 20
+		</span>
+		<span class="webinar-banner-cta">Save your spot →</span>
+	</a>
+</div>
+
+<script is:inline>
+	(function () {
+		var el = document.getElementById('webinar-banner');
+		if (!el) return;
+		var cutoff = new Date(el.dataset.cutoff + 'T23:59:59');
+		if (new Date() <= cutoff) {
+			el.hidden = false;
+		}
+	})();
+</script>
+
+<style>
+	.webinar-banner {
+		width: 100%;
+		background: var(--gradient-accent-orange);
+	}
+
+	.webinar-banner-link {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.25rem 0.75rem;
+		padding: 0.75rem 1.5rem;
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		text-align: center;
+		color: var(--accent-text-over);
+		text-decoration: none;
+	}
+
+	.webinar-banner-link:hover,
+	.webinar-banner-link:focus {
+		text-decoration: underline;
+	}
+
+	.webinar-banner-cta {
+		font-weight: 600;
+		white-space: nowrap;
+	}
+</style>

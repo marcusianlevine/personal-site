@@ -1,0 +1,43 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Marcus Levine//Swiped Out Webinar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:Swiped Out: How Dating Apps Keep You Single & What Actually Works
+DTSTART;TZID=Europe/Berlin:20260820T190000
+DTEND;TZID=Europe/Berlin:20260820T194500
+DTSTAMP:20260810T140503Z
+UID:swiped-out-2026-08-20@marcuslevine.com
+DESCRIPTION:A free 45-minute live session with Marcus Levine.\n\nJoin here
+ : https://meet.google.com/noa-akta-qsk\n\n
+ Camera on if you can. Keep the chat open\; I'll be asking for your input.\n\nQues
+ tions? Just reply to any of my emails.
+LOCATION:https://meet.google.com/noa-akta-qsk
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+URL:https://meet.google.com/noa-akta-qsk
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Swiped Out starts in one hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

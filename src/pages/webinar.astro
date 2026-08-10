@@ -5,49 +5,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
 	title="Swiped Out — Free Webinar | Marcus Levine"
-	description="Free 45-minute live session: how dating apps keep you single — and what actually works. Register to save your spot."
+	description="Free 45-minute live session: how dating apps keep you single & what actually works. Register to save your spot."
 >
 	<div class="stack gap-20">
 		<main class="wrapper stack gap-10 register">
 			<Hero
 				title="Swiped Out"
-				tagline="How Dating Apps Keep You Single — and What Actually Works"
+				tagline="How Dating Apps Keep You Single & What Actually Works"
 			>
 				<p class="eyebrow">Free 45-minute live session</p>
 			</Hero>
 
 			<section class="content stack gap-4">
-				<p class="datetime">[Date] · [Time] CET · live on video</p>
+				<p class="datetime">Thursday, August 20 · 19:00 CEST · live on video</p>
 				<ul>
-					<li>what the apps genuinely do well — and the two things they can't (and won't) do for you</li>
-					<li>why that leaves in-person, and the body response and two old stories that have made it feel impossible</li>
-					<li>the one honest question that expresses interest without cornering anyone — plus a challenge to practise it this week</li>
+					<li>how dating apps keep you frustrated and swiping instead of going on dates</li>
+					<li>why in-person dating works, and the body responses that have made it feel impossible</li>
+					<li>real stories from women about why they prefer a direct approach with respectful communication</li>
+					<li>a simple 5 step strategy for approaching with respect and authentic interest</li>
+					<li>a challenge to practice this week</li>
 				</ul>
-				<p>
+				<p class="not-pickup">
 					This isn't pickup, and it's not about becoming someone you're not — the opposite.
-					You'll learn to show interest honestly, without being creepy, because honesty is the
-					whole antidote to creepy.
+					<br />
+					You'll learn to show interest honestly, without being creepy.
 				</p>
 			</section>
 
 			<section class="form-wrap">
-				<form method="POST" action="https://api.web3forms.com/submit" id="form" class="register-form">
-					<input type="hidden" name="access_key" value="71cc3900-9ab4-4d85-af03-f5628a7daa3b" />
-					<input type="hidden" name="subject" value="Webinar registration — Swiped Out" />
-
+				<form id="form" class="register-form" novalidate>
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" name="name" id="name" required placeholder="Your name" />
+						<input type="text" name="fields[name]" id="name" required placeholder="Your name" autocomplete="given-name" />
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email" required placeholder="your@email.com" />
+						<input type="email" name="fields[email]" id="email" required placeholder="your@email.com" autocomplete="email" />
 					</div>
+					<!-- Which channel this registration came from — add ?src=telegram, ?src=ig, ?src=substack etc.
+					     to the link you share, and MailerLite records it in the "Lead source" custom field. -->
+					<input type="hidden" id="source" name="fields[lead_source]" value="website" />
 					<button type="submit" class="submit-button">Save my spot →</button>
-					<p class="under-form">Come nervous. That's the point.</p>
 					<p class="tiny">
-						Register and I'll send you my field note, <a href="/swiper-no-swiping/"><em>Swiper, No Swiping</em></a> —
-						the numbers on why the apps are rigged against the average man, and the game most people stopped playing.
+						By saving your spot you agree to receive the webinar link and a couple of useful follow-ups. Unsubscribe any time.
 					</p>
 					<div id="result" class="form-result"></div>
 				</form>
@@ -55,6 +55,79 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		</main>
 	</div>
 </BaseLayout>
+
+<script is:inline>
+(function () {
+	/* MailerLite: account 2536425, form "Swiped Out — registration (embedded)",
+	   feeds the "Swiped Out – Registrants" group. Double opt-in is off, so
+	   registrants land in the group immediately and get the confirmation email. */
+	var ML_ACCOUNT_ID = '2536425';
+	var ML_FORM_ID = '194234368689964325';
+	var ACTION = 'https://assets.mailerlite.com/jsonp/' + ML_ACCOUNT_ID + '/forms/' + ML_FORM_ID + '/subscribe';
+
+	var form = document.getElementById('form');
+	var result = document.getElementById('result');
+	var btn = form.querySelector('.submit-button');
+	var btnDefaultText = btn.textContent;
+
+	try {
+		var src = new URLSearchParams(window.location.search).get('src');
+		if (src) document.getElementById('source').value = src.slice(0, 40);
+	} catch (e) { /* older browser — leave as "website" */ }
+
+	function showResult(msg, isError) {
+		result.style.display = 'block';
+		result.textContent = msg;
+		result.classList.toggle('form-result-error', !!isError);
+	}
+
+	function showSuccess() {
+		showResult("You're in — check your inbox for the calendar link. If it's not there in five minutes, check Promotions or spam, and drag it to your main inbox so the reminder finds you.", false);
+		form.reset();
+	}
+
+	function resetButton() {
+		btn.disabled = false;
+		btn.textContent = btnDefaultText;
+	}
+
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+
+		var data = new FormData(form);
+		data.append('ml-submit', '1');
+		data.append('anticsrf', 'true');
+
+		btn.disabled = true;
+		btn.textContent = 'Saving your spot…';
+		showResult('Please wait…', false);
+
+		fetch(ACTION, { method: 'POST', body: data })
+			.then(function (r) { return r.json(); })
+			.then(function (res) {
+				resetButton();
+				if (res && res.success === false) {
+					showResult("Something went wrong on my end. Try again, or email marcusianl@gmail.com and I'll add you by hand.", true);
+				} else {
+					showSuccess();
+				}
+			})
+			.catch(function () {
+				// Cross-origin or parsing hiccup — MailerLite still receives the POST.
+				// Retry opaquely, then confirm to the visitor.
+				fetch(ACTION, { method: 'POST', body: data, mode: 'no-cors' })
+					.then(function () {
+						resetButton();
+						showSuccess();
+					})
+					.catch(function () {
+						resetButton();
+						showResult("Couldn't reach the server. Check your connection and try again, or email marcusianl@gmail.com and I'll add you by hand.", true);
+					});
+			});
+	});
+})();
+</script>
 
 <style>
 	.register {
@@ -87,6 +160,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+	}
+
+	.not-pickup {
+		text-align: center;
+		font-family: var(--font-brand);
+		font-style: italic;
+		font-weight: 600;
+		color: var(--gray-100);
 	}
 
 	.form-wrap {
@@ -157,5 +238,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		font-size: var(--text-sm);
 		color: var(--gray-400);
 		text-align: center;
+	}
+
+	.form-result {
+		display: none;
+		padding: 0.85rem 1rem;
+		font-size: var(--text-sm);
+		border-radius: 0.75rem;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		color: var(--gray-200);
+		text-align: center;
+	}
+
+	.form-result-error {
+		background: rgba(196, 99, 63, 0.12);
+		border-color: var(--accent-regular);
+		color: var(--gray-0);
 	}
 </style>

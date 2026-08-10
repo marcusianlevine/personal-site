@@ -7,7 +7,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+// Layout import - provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Full Astro Component Syntax:
@@ -16,14 +16,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
 	title="Marcus Levine | Relationship Coach"
-	description="Bringing back in-person dating. Coaching for people who are fed up with the apps and want to approach the people they're attracted to — calmly, confidently, respectfully."
+	description="Bringing back in-person dating. Coaching for people who are fed up with the apps and want to approach the people they're attracted to - calmly, confidently, respectfully."
 >
-	<div class="stack gap-20 lg:gap-48">
+	<div class="stack gap-20 lg:gap-20">
+		<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
 					title="Hi, I'm Marcus"
-					tagline="I help you learn to calmly and confidently approach people you're attracted to."
+					tagline="I train you to respectfully approach people you're attracted to."
 					align="start"
 				>
 					<div class="roles">
@@ -45,25 +46,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<main class="wrapper stack gap-20 lg:gap-30">
 			<section class="section">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>The mission</h3>
+					<h3>Bring back in-person dating</h3>
 					<p>
-						Dating apps expand your pool — and make you miserable. I help people develop
-						authentic approach skills, nervous-system regulation, and the emotional maturity to
-						meet someone face-to-face, eye-to-eye.
+						Dating apps make money by keeping you miserable.
 					</p>
 					<p>
-						<i><b>Rejection is training, not failure.</b></i>
+						Instead, develop authentic approach skills,
+						nervous-system regulation, and the emotional maturity to
+						meet someone face-to-face, eye-to-eye.
+					</p>
+					<p class="pull">
+						<i><b>Rejection is information, not failure.</b></i>
 					</p>
 				</header>
 
 				<div class="paths">
 					<article class="path-card">
-						<p class="path-label">Start here — free</p>
+						<p class="path-label">Start here - free</p>
 						<h4>Swiper, No Swiping</h4>
 						<p>
-							Why the odds inside the apps are brutal for men — and the game most
+							Why the odds inside the apps are brutal for men - and the game most
 							people stopped playing. The numbers, the reframe, and a free 45-minute live
-							session: <em>Swiped Out: How Dating Apps Keep You Single — and What Actually
+							session: <em>Swiped Out: How Dating Apps Keep You Single & What Actually
 							Works.</em>
 						</p>
 						<CallToAction href="/swiper-no-swiping/">
@@ -73,14 +77,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					</article>
 
 					<article class="path-card">
-						<p class="path-label">The deep work — 3 months, 1:1</p>
-						<h4>Master the Approach</h4>
+						<p class="path-label">The deep work - 3 months, 1:1</p>
+						<h4>Authentic Approach</h4>
 						<p>
-							Learn to calmly and confidently approach people you're attracted to, and speak to
-							them respectfully yet directly. Somatic tools, weekly real-world reps, and a coach
+							Learn to approach people you're attracted to with respect and calm. Somatic tools, weekly real-world reps, and a coach
 							in your corner for the scary moments. No pickup lines. No creepiness.
 						</p>
-						<CallToAction href="/master-the-approach/">
+						<CallToAction href="/authentic-approach/">
 							Explore the container
 							<Icon icon="arrow-right" size="1.2em" />
 						</CallToAction>
@@ -88,6 +91,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				</div>
 			</section>
 		</main>
+
+		</div>
 
 		<ContactCTA />
 	</div>
@@ -115,6 +120,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		object-position: top;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
+	}
+
+	:global(html.theme-dark) .hero img {
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
 	}
 
 	@media (min-width: 50em) {
@@ -169,12 +178,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 1rem;
+		min-width: 0;
 		background: var(--gray-999_40);
 		border: 1px solid var(--gray-800);
 		border-radius: 1.5rem;
 		padding: 2rem;
 		box-shadow: var(--shadow-sm);
 		color: var(--gray-200);
+	}
+
+	.path-card :global(a) {
+		white-space: normal;
 	}
 
 	.path-label {
@@ -196,7 +210,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		}
 
 		.paths {
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 			gap: 2rem;
 		}
 
