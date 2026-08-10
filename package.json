@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:smoke": "node scripts/smoke-test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
@@ -17,5 +18,8 @@
     "@iconify-json/mdi": "^1.2.3",
     "astro": "^7.2.0",
     "astro-icon": "^1.1.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }
