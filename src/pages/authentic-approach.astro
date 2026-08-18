@@ -149,7 +149,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<h2>Investment</h2>
 				<p>
 					<strong>3-month container - $2,222</strong> (paid in full), or
-					<strong>3 payments of $800</strong>.
+					<strong> 3 payments of $800</strong>.
+				</p>
+			</section>
+
+			<section class="guarantee">
+				<h2>Win your money back guarantee</h2>
+				<p>
+					If you log <b>100 approaches</b> within the first <b>2 weeks</b> of the program and don't get a single date, you'll <b>get your money back</b>.
 				</p>
 			</section>
 
@@ -259,6 +266,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 	.banner span {
 		color: var(--accent-light);
+	}
+
+	.guarantee {
+		background: var(--gray-0);
+		border: 2px solid var(--accent-regular);
+		border-radius: 1rem;
+		padding: 2rem;
+		max-width: 65ch;
+		margin-inline: auto;
+		text-align: center;
+		box-shadow: var(--shadow-md);
+	}
+
+	:global(html.theme-dark) .guarantee {
+		background: var(--gray-800);
+		border-color: var(--accent-dark);
+	}
+
+	.guarantee h2 {
+		color: var(--accent-regular);
+		font-size: var(--text-xl);
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
+
+	:global(html.theme-dark) .guarantee h2 {
+		color: var(--accent-dark);
+	}
+
+	.guarantee p {
+		color: var(--gray-900);
+		font-size: var(--text-md);
+		margin-bottom: 0.75rem;
+	}
+
+	:global(html.theme-dark) .guarantee p {
+		color: var(--gray-200);
+	}
+
+	.guarantee-fine {
+		font-size: var(--text-sm);
+		color: var(--gray-700);
+	}
+
+	:global(html.theme-dark) .guarantee-fine {
+		color: var(--gray-400);
 	}
 
 	.final-cta {
