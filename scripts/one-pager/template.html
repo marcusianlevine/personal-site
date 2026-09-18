@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Fuck Dating Apps: the field note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+	/* Palette: 09-palette.md */
+	:root {
+		--cream: #FAF3E7; --cream-soft: #F3E9D7; --line: #E3D7C3;
+		--ink: #2B2B28; --muted: #8A857A;
+		--terra: #C4633F; --terra-dark: #A34F30; --blush: #E8B4A0;
+		--blue: #4A6D8C; --blue-dark: #3A5670; --blue-soft: #CFDCE4;
+		--rose: #C4657F; --rose-dark: #A94F68; --rose-soft: #F3DBE1;
+		--warn: #C9211E;
+	}
+	@page { size: A4; margin: 12mm 13mm 15mm 13mm; }
+	* { box-sizing: border-box; }
+	html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+	body { font-family: 'Work Sans', system-ui, sans-serif; font-size: 9.2pt; line-height: 1.38; }
+	.figure, .stats, .callout, .opinion, .cta, .pull { break-inside: avoid; }
+	h2 { break-after: avoid; }
+	h1, h2, h3, .serif { font-family: 'Fraunces', Georgia, serif; }
+	h1 { font-size: 32pt; line-height: 1.05; margin: 0 0 3pt; font-weight: 700; letter-spacing: -0.01em; }
+	h2 { font-size: 15pt; line-height: 1.2; margin: 11pt 0 4pt; font-weight: 600; }
+	p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+	a { color: var(--terra-dark); text-decoration: none; }
+	strong { font-weight: 600; }
+	.eyebrow { font-size: 8pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin: 0 0 6pt; }
+	.sub { font-family: 'Fraunces', serif; font-style: italic; color: var(--terra-dark); font-size: 13pt; margin: 0 0 8pt; }
+	.pull { font-family: 'Fraunces', serif; font-style: italic; font-size: 12pt; color: var(--terra-dark); border-left: 3px solid var(--terra); padding-left: 10pt; margin: 7pt 0 8pt; }
+	.fine { font-size: 7.4pt; color: var(--muted); line-height: 1.35; }
+	.callout { background: var(--cream-soft); border-left: 3px solid var(--blue); padding: 7pt 10pt; margin: 7pt 0 8pt; }
+	.callout h3 { margin: 0 0 3pt; font-size: 12pt; color: var(--blue-dark); }
+	.callout p:last-child { margin-bottom: 0; }
+	.opinion { background: var(--ink); color: var(--cream); padding: 8pt 12pt; margin: 8pt 0; border-radius: 3pt; }
+	.opinion h3 { margin: 0 0 4pt; font-size: 13pt; color: var(--blush); }
+	.opinion p { margin: 0 0 5pt; }
+	.opinion p:last-child { margin: 0; }
+
+	.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6pt; margin: 8pt 0 2pt; }
+	.stat { background: var(--cream-soft); border-top: 3px solid var(--blue); padding: 6pt 7pt 5pt; }
+	.stat:last-child { border-top-color: var(--terra); }
+	.stat .big { font-family: 'Fraunces', serif; font-weight: 700; font-size: 15pt; color: var(--blue-dark); line-height: 1.1; margin-bottom: 2pt; white-space: nowrap; }
+	.stat .big.small { font-size: 12.5pt; }
+	.stat:last-child .big { color: var(--terra-dark); }
+	.stat p { font-size: 7.6pt; line-height: 1.3; margin: 0 0 2pt; }
+	.stat a { font-size: 6.6pt; color: var(--muted); }
+
+	.figure { background: var(--cream-soft); padding: 8pt 11pt 6pt; margin: 8pt 0 4pt; }
+	.figure .eyebrow { margin-bottom: 2pt; }
+	.figure h3 { margin: 0 0 2pt; font-size: 12.5pt; }
+	.figure .lede { font-size: 8.5pt; color: var(--muted); margin: 0 0 6pt; }
+	.figure svg { width: 100%; height: auto; display: block; }
+	.figure .cap { font-size: 8pt; color: var(--muted); margin: 5pt 0 0; }
+
+	.cta { background: var(--terra); color: var(--cream); padding: 9pt 12pt; margin: 8pt 0 6pt; border-radius: 3pt; }
+	.cta h2 { margin: 0 0 3pt; color: var(--cream); font-size: 15pt; }
+	.cta p { margin: 0 0 5pt; }
+	.cta .links { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt; margin-top: 4pt; }
+	.cta .link { background: rgba(255,255,255,0.14); padding: 5pt 9pt; border-radius: 2pt; }
+	.cta .link b { display: block; font-size: 9pt; }
+	.cta .link span { font-size: 8.6pt; opacity: 0.92; }
+	.cta a { color: var(--cream); }
+
+	ul { margin: 0 0 6pt; padding-left: 14pt; }
+	li { margin: 0 0 3.5pt; break-inside: avoid; }
+	.callout ul, .opinion ul { margin-bottom: 0; }
+	.callout li, .opinion li { margin-bottom: 3pt; }
+	.opinion li::marker { color: var(--blush); }
+	table.grid { width: 100%; border-collapse: collapse; margin: 4pt 0 8pt; font-size: 8.4pt; line-height: 1.3; break-inside: avoid; }
+	table.grid th { text-align: left; font-family: 'Fraunces', serif; font-weight: 600; font-size: 9pt; color: var(--terra-dark); padding: 3pt 6pt 3pt 0; border-bottom: 1.5px solid var(--terra); }
+	table.grid td { vertical-align: top; padding: 4pt 6pt 4pt 0; border-bottom: 1px solid var(--line); }
+	table.grid td:last-child, table.grid th:last-child { padding-right: 0; }
+	table.grid.log td { height: 24pt; }
+	table.grid.log th:nth-child(1) { width: 9%; }
+	table.grid.log th:nth-child(2) { width: 8%; }
+	table.grid.log th:nth-child(3), table.grid.log th:nth-child(4) { width: 31%; }
+	table.grid.log th:nth-child(5) { width: 21%; white-space: nowrap; }
+	table.grid.log th { color: var(--blue-dark); border-bottom-color: var(--blue); }
+	table.grid.log { margin-bottom: 4pt; }
+	.page-break { break-before: page; }
+	.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; }
+</style>
+</head>
+<body>
+
+<p class="eyebrow">A field note</p>
+<h1>{{title}}</h1>
+<p class="sub">{{tagline}}</p>
+
+{{opening}}
+
+<div class="figure">
+	<p class="eyebrow">Apps vs. in person</p>
+	<h3>{{stages_title}}</h3>
+	<p class="lede">{{stages_lede}}</p>
+	<svg viewBox="0 0 760 214" xmlns="http://www.w3.org/2000/svg" font-family="'Work Sans', system-ui, sans-serif">
+		<defs>
+			<marker id="arr-blue" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+				<path d="M 0 0 L 8 4 L 0 8 z" fill="#4A6D8C" />
+			</marker>
+		</defs>
+
+		<!-- lane 1: the apps -->
+		<text x="8" y="12" font-size="10.5" font-weight="600" fill="#3A5670">On the apps</text>
+		<text x="82" y="12" font-size="9.5" fill="#8A857A">weeks, and what it trains is writing a profile</text>
+		<g font-size="10.5" font-weight="600">
+			<rect x="8" y="22" width="136" height="50" rx="6" fill="#CFDCE4" />
+			<text x="76" y="43" text-anchor="middle" fill="#2B2B28">Swipe</text>
+			<text x="76" y="59" text-anchor="middle" fill="#3A5670" font-size="8.8" font-weight="400">hours a week</text>
+			<text x="151" y="52" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="158" y="22" width="136" height="50" rx="6" fill="#CFDCE4" />
+			<text x="226" y="43" text-anchor="middle" fill="#2B2B28">Match</text>
+			<text x="226" y="59" text-anchor="middle" fill="#3A5670" font-size="8.8" font-weight="400">1 in 50 swipes</text>
+			<text x="301" y="52" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="308" y="22" width="136" height="50" rx="6" fill="#CFDCE4" />
+			<text x="376" y="43" text-anchor="middle" fill="#2B2B28">Text</text>
+			<text x="376" y="59" text-anchor="middle" fill="#3A5670" font-size="8.8" font-weight="400">days</text>
+			<text x="451" y="52" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="458" y="22" width="136" height="50" rx="6" fill="#CFDCE4" />
+			<text x="526" y="43" text-anchor="middle" fill="#2B2B28">Schedule</text>
+			<text x="526" y="59" text-anchor="middle" fill="#3A5670" font-size="8.8" font-weight="400">a week, if it happens</text>
+			<text x="601" y="52" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="608" y="22" width="136" height="50" rx="6" fill="#4A6D8C" />
+			<text x="676" y="43" text-anchor="middle" fill="#FAF3E7">First date</text>
+			<text x="676" y="59" text-anchor="middle" fill="#FAF3E7" font-size="8.8" font-weight="400">finally find out</text>
+		</g>
+		<!-- the loop back to swiping -->
+		<path d="M 526 72 v 14 H 76 v -10" fill="none" stroke="#4A6D8C" stroke-width="1.4" stroke-dasharray="3 2.5" marker-end="url(#arr-blue)" />
+		<text x="301" y="99" text-anchor="middle" font-size="9.5" fill="#3A5670" font-weight="600">Most matches never become a date. Back to swiping.</text>
+
+		<!-- lane 2: in person -->
+		<text x="8" y="124" font-size="10.5" font-weight="600" fill="#A34F30">In person</text>
+		<text x="68" y="124" font-size="9.5" fill="#8A857A">minutes, and every step trains a skill you keep</text>
+		<g font-size="10.5" font-weight="600">
+			<rect x="8" y="134" width="136" height="50" rx="6" fill="#E8B4A0" />
+			<text x="76" y="155" text-anchor="middle" fill="#2B2B28">Notice her</text>
+			<text x="76" y="171" text-anchor="middle" fill="#A34F30" font-size="8.8" font-weight="400">now</text>
+			<text x="151" y="164" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="158" y="134" width="136" height="50" rx="6" fill="#E8B4A0" />
+			<text x="226" y="155" text-anchor="middle" fill="#2B2B28">Say hello</text>
+			<text x="226" y="171" text-anchor="middle" fill="#A34F30" font-size="8.8" font-weight="400">10 seconds</text>
+			<text x="301" y="164" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="308" y="134" width="136" height="50" rx="6" fill="#E8B4A0" />
+			<text x="376" y="155" text-anchor="middle" fill="#2B2B28">Talk</text>
+			<text x="376" y="171" text-anchor="middle" fill="#A34F30" font-size="8.8" font-weight="400">2 minutes, and you both know</text>
+			<text x="451" y="164" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="458" y="134" width="136" height="50" rx="6" fill="#E8B4A0" />
+			<text x="526" y="155" text-anchor="middle" fill="#2B2B28">Ask</text>
+			<text x="526" y="171" text-anchor="middle" fill="#A34F30" font-size="8.8" font-weight="400">30 seconds</text>
+			<text x="601" y="164" text-anchor="middle" fill="#8A857A" font-size="12">›</text>
+
+			<rect x="608" y="134" width="136" height="50" rx="6" fill="#C4633F" />
+			<text x="676" y="155" text-anchor="middle" fill="#FAF3E7">First date</text>
+			<text x="676" y="171" text-anchor="middle" fill="#FAF3E7" font-size="8.8" font-weight="400">you already know</text>
+		</g>
+		<!-- the freeze marker -->
+		<line x1="226" y1="186" x2="226" y2="196" stroke="#C9211E" stroke-width="1.6" />
+		<text x="226" y="208" text-anchor="middle" font-size="9.5" fill="#C9211E" font-weight="600">the freeze lives here</text>
+	</svg>
+	<p class="cap">{{stages_caption}}</p>
+</div>
+
+{{sections}}
+
+<div class="cta">
+	<h2>{{cta_title}}</h2>
+	{{cta_body}}
+	<div class="links">
+{{cta_links}}
+	</div>
+</div>
+
+<p class="fine">{{sources}}</p>
+
+</body>
+</html>

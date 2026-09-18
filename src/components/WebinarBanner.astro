@@ -1,32 +1,34 @@
 ---
-interface Props {
-	/** Last day the banner should show, in YYYY-MM-DD (local time). */
-	cutoffDate?: string;
-	href?: string;
-}
+/**
+ * Site-wide strip announcing the next live webinar. Driven entirely by src/config/webinar.ts:
+ * it renders only while `nextWebinar.date` is set and in the future (decided at build time),
+ * and a small inline check also hides it client-side if the date passed since the last deploy.
+ * Not shown on the webinar page itself.
+ */
+import { upcomingWebinar, webinarDateLabel } from '../config/webinar';
 
-const { cutoffDate = '2026-08-20', href = '/webinar/' } = Astro.props;
+const webinar = upcomingWebinar();
+const onWebinarPage = Astro.url.pathname.replace(/\/$/, '') === webinar?.url.replace(/\/$/, '');
 ---
 
-<div id="webinar-banner" class="webinar-banner" data-cutoff={cutoffDate} hidden>
-	<a href={href} class="webinar-banner-link">
-		<span class="webinar-banner-text">
-			<strong>Free live webinar:</strong> Swiped Out, Aug 20
-		</span>
-		<span class="webinar-banner-cta">Save your spot →</span>
-	</a>
-</div>
-
-<script is:inline>
-	(function () {
-		var el = document.getElementById('webinar-banner');
-		if (!el) return;
-		var cutoff = new Date(el.dataset.cutoff + 'T23:59:59');
-		if (new Date() <= cutoff) {
-			el.hidden = false;
-		}
-	})();
-</script>
+{
+	webinar && !onWebinarPage && (
+		<div id="webinar-banner" class="webinar-banner" data-until={webinar.date}>
+			<a href={webinar.url} class="webinar-banner-link">
+				<span class="webinar-banner-text">
+					<strong>Free live webinar:</strong> {webinar.title}, {webinarDateLabel(webinar)}
+				</span>
+				<span class="webinar-banner-cta">Save your spot →</span>
+			</a>
+		</div>
+		<script is:inline>
+			(function () {
+				var el = document.getElementById('webinar-banner');
+				if (el && new Date(el.dataset.until) <= new Date()) el.remove();
+			})();
+		</script>
+	)
+}
 
 <style>
 	.webinar-banner {

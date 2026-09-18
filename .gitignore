@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Fresh one-pager render left behind when the target PDF is locked by a viewer
+public/*.pdf.tmp

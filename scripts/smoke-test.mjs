@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const baseUrl = process.env.SMOKE_TEST_URL ?? 'http://127.0.0.1:4321';
-const routes = ['/', '/about', '/contact', '/authentic-approach', '/webinar', '/swiper-no-swiping'];
+const routes = ['/', '/about', '/contact', '/authentic-approach', '/webinar', '/fuck-dating-apps'];
 
 const browser = await chromium.launch();
 let failed = false;

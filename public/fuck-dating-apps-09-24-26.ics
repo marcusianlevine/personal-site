@@ -1,0 +1,46 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Marcus Levine//Fuck Dating Apps Webinar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:Fuck Dating Apps: How They Keep You Stuck — and What Actually
+ Works
+DTSTART;TZID=Europe/Berlin:20260924T190000
+DTEND;TZID=Europe/Berlin:20260924T194500
+DTSTAMP:20260915T000000Z
+UID:fuck-dating-apps-2026-09-24@marcuslevine.com
+DESCRIPTION:A free 45-minute live session with Marcus Levine.\n\nTime sho
+ wn is CEST and still pending confirmation against India travel dates -
+ re-send this invite if it changes.\n\nJoin here: https://meet.google.co
+ m/noa-akta-qsk\n\nCome on time — we open cold. Camera on if you can. Ke
+ ep the chat open\; the chat is the content.\n\nQuestions? Just reply to
+  any of my emails.
+LOCATION:https://meet.google.com/noa-akta-qsk
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+URL:https://meet.google.com/noa-akta-qsk
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Fuck Dating Apps starts in one hour
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

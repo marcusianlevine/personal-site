@@ -1,32 +1,48 @@
 ---
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { upcomingWebinar, webinarDateLabel } from '../config/webinar';
+
+// Date comes from src/config/webinar.ts. When the date has passed, the page keeps taking
+// registrations for the next run instead of advertising a session that already happened.
+const webinar = upcomingWebinar();
 ---
+<!-- Renamed 2026-09-15: "Swiped Out" -> "Fuck Dating Apps" (public/social: "F*ck Dating Apps").
+     <title>/description below use the censored form since search snippets and social
+     link previews are public; the on-page H1 uses the full name. Date bumped to the
+     Sep 24 relaunch, pending confirmation against India travel — see the relaunch
+     checklist in Personal Brand Ecosystem. -->
 
 <BaseLayout
-	title="Swiped Out — Free Webinar | Marcus Levine"
-	description="Free 45-minute live session: how dating apps keep you single & what actually works. Register to save your spot."
+	title="F*ck Dating Apps: Free Webinar | Marcus Levine"
+	description="Free 45-minute live session: how dating apps keep you stuck, and what actually works. Register to save your spot."
 >
 	<div class="stack gap-20">
 		<main class="wrapper stack gap-10 register">
 			<Hero
-				title="Swiped Out"
-				tagline="How Dating Apps Keep You Single & What Actually Works"
+				title="Fuck Dating Apps"
+				tagline="How They Keep You Stuck & What Actually Works"
 			>
 				<p class="eyebrow">Free 45-minute live session</p>
 			</Hero>
 
 			<section class="content stack gap-4">
-				<p class="datetime">Thursday, August 20 · 19:00 CEST · live on video</p>
+				{
+					webinar ? (
+						<p class="datetime">{webinarDateLabel(webinar)} · live on video</p>
+					) : (
+						<p class="datetime">Next date coming soon · live on video · register below and you'll be the first to hear</p>
+					)
+				}
 				<ul>
-					<li>how dating apps keep you frustrated and swiping instead of going on dates</li>
-					<li>why in-person dating works, and the body responses that have made it feel impossible</li>
-					<li>real stories from women about why they prefer a direct approach with respectful communication</li>
-					<li>a simple 5 step strategy for approaching with respect and authentic interest</li>
+					<li>what dating apps actually do (a lot less than you think), and why the rest is on you</li>
+					<li>why meeting in person works, and the body responses that have made it feel impossible</li>
+					<li>real stories from women about what a good approach feels like, and a bad one</li>
+					<li>a simple 5-step approach that shows honest interest without cornering anyone</li>
 					<li>a challenge to practice this week</li>
 				</ul>
 				<p class="not-pickup">
-					This isn't pickup, and it's not about becoming someone you're not — the opposite.
+					This isn't pickup. Nobody's asking you to become someone you're not.
 					<br />
 					You'll learn to show interest honestly, without being creepy.
 				</p>
@@ -56,11 +72,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	</div>
 </BaseLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ HAS_WEBINAR: Boolean(webinar) }}>
 (function () {
-	/* MailerLite: account 2536425, form "Swiped Out — registration (embedded)",
-	   feeds the "Swiped Out – Registrants" group. Double opt-in is off, so
-	   registrants land in the group immediately and get the confirmation email. */
+	/* MailerLite: account 2536425, form still internally labeled "Swiped Out — registration
+	   (embedded)" in the MailerLite dashboard (rename it there if you want it to match — that
+	   label can't be changed from this file), feeds the "Swiped Out – Registrants" group.
+	   Double opt-in is off, so registrants land in the group immediately and get the
+	   confirmation email. */
 	var ML_ACCOUNT_ID = '2536425';
 	var ML_FORM_ID = '194234368689964325';
 	var ACTION = 'https://assets.mailerlite.com/jsonp/' + ML_ACCOUNT_ID + '/forms/' + ML_FORM_ID + '/subscribe';
@@ -82,7 +100,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 
 	function showSuccess() {
-		showResult("You're in — check your inbox for the calendar link. If it's not there in five minutes, check Promotions or spam, and drag it to your main inbox so the reminder finds you.", false);
+		showResult(HAS_WEBINAR
+			? "You're in. Check your inbox for the calendar link. If it's not there in five minutes, check Promotions or spam, and drag it to your main inbox so the reminder finds you."
+			: "You're on the list. You'll be the first to hear when the next date is set. If the confirmation isn't in your inbox in five minutes, check Promotions or spam.", false);
 		form.reset();
 	}
 

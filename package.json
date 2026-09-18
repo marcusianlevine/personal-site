@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:smoke": "node scripts/smoke-test.mjs"
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "build:onepager": "node scripts/build-onepager.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

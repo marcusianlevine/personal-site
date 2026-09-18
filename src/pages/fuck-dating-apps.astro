@@ -1,0 +1,618 @@
+---
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { upcomingWebinar, webinarDateLabel, mailerlite, fieldNoteFormId, fieldNotePdfPath } from '../config/webinar';
+
+// Closing CTA: the live webinar while one is scheduled, the offer page once the date has passed.
+const webinar = upcomingWebinar();
+
+// Which MailerLite form the signup posts to (and therefore which delivery email goes out):
+// the webinar-edition form while a webinar is scheduled, the plain one otherwise. Build-time.
+const ML_ACCOUNT_ID = mailerlite.accountId;
+const ML_FORM_ID = fieldNoteFormId();
+
+// Renamed 2026-09-15 from /swiper-no-swiping/ (section title "Swiper, No Swiping" -> "Fuck Dating Apps",
+// matching the webinar rename). Route also moved from /swiper-no-swiping/ to /fuck-dating-apps/ -
+// low risk since this page wasn't live yet (MailerLite form ID below is still a placeholder), but
+// if you've shared the old URL anywhere, add a redirect or keep swiper-no-swiping.astro as an alias.
+// Content reworked per Marcus's brief: lead with WHY the apps are designed this way (the dopamine
+// loop, the wrong skill, only handling the first 5%) rather than opening on stats. Sources for the
+// two new research claims are in the .fine paragraph near the bottom.
+
+const stats = [
+	{
+		big: '~3 : 1',
+		text: 'ratio of men to women on the most popular apps',
+		src: 'https://www.businessofapps.com/data/tinder-statistics/',
+		srcLabel: 'Business of Apps',
+	},
+	{
+		big: '53% vs 12%',
+		text: 'how often men and women swipe right',
+		src: 'https://www.swipestats.io/blog/dating-app-statistics-gender',
+		srcLabel: 'SwipeStats',
+	},
+	{
+		big: '50%',
+		text: "of women's likes go to the top 15% of men",
+		src: 'https://www.swipestats.io/blog/tinder-study-80-20',
+		srcLabel: 'Hinge data, via SwipeStats',
+	},
+	{
+		big: '~2%',
+		text: "of a typical man's right-swipes become a match. That's 50 swipes for one match.",
+		src: 'https://www.swipestats.io/blog/tinder-study-80-20',
+		srcLabel: 'SwipeStats',
+	},
+	{
+		big: '30k',
+		text: 'profiles a typical man may swipe to find one relationship',
+		src: 'https://onlinelibrary.wiley.com/doi/10.1111/theo.12576',
+		srcLabel: 'Räsänen, Theoria',
+	},
+];
+
+/** Which one-pager PDF to serve: webinar edition while a date is scheduled, plain otherwise. */
+const onePagerPdf = fieldNotePdfPath();
+---
+
+<BaseLayout
+	title="F*ck Dating Apps | Marcus Levine"
+	description="Why dating apps keep you swiping instead of dating, and what to do instead. A free one-page field note from Marcus Levine."
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-15 swiper">
+			<Hero
+				title="Fuck Dating Apps."
+				tagline="How they keep you swiping, not dating."
+			>
+				<div class="hero-cta">
+					<a class="cta" href="#get-the-one-pager">
+						Get the free field note
+						<Icon icon="arrow-right" size="1.2em" />
+					</a>
+					<p class="cta-note">What to do instead, on one page: read the room, the first sixty seconds, and a five-rung ladder of reps.</p>
+				</div>
+			</Hero>
+
+			<section class="content stack gap-4">
+				<p>
+					Another week of swiping. One match, zero conversations. New photo, new bio, same frustration?
+				</p>
+				<p>
+					It's not just you. The apps are built this way.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<p>
+					Hi, I'm Marcus. For most of my twenties I was terrified of making a woman
+					uncomfortable. I grew up the youngest in a house full of women, and the respect that
+					gave me got tangled up with fear somewhere along the way. So I did the safe thing. I
+					swiped.
+				</p>
+				<p>
+					Years of it. Thousands of swipes, a handful of matches, and three actual dates.
+					They were fine. But sitting across from a match, the connection I'd imagined from her profile wasn't there.
+				</p>
+				<p>
+					A better photo didn't change any of that. Learning to approach and connect with people in real life did. 
+					Voicing my desires, out loud, to people I already felt attracted to - honestly enough that they could say no. 
+					Through that vulnerability, I found the connections I'd been swiping for.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<p>
+					Let me be fair to the apps: they do one thing. They put more profiles in front of you than
+					your neighborhood ever could. That's it. They don't handle the first stages of dating, they
+					trap you in them: swipe, match, text, schedule, wait, and only on the date do you find out
+					whether you feel good around her. In person, you have that answer in two minutes. And knowing
+					there are endless profiles to swipe on gives you a reason not to talk to the person who's
+					already interested in you.
+				</p>
+				<p>
+					A happy couple who deletes the app is a lost customer.
+				</p>
+			</section>
+
+			<section class="stats">
+				{
+					stats.map(({ big, text, src, srcLabel }) => (
+						<div class="stat">
+							<div class="stat-big">{big}</div>
+							<p>{text}</p>
+							<a class="stat-src" href={src} target="_blank" rel="noopener">Source: {srcLabel}</a>
+						</div>
+					))
+				}
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>Slot machine, by design</h2>
+				<p>
+					Variable rewards. An endless feed. A hidden ranking that decides who even sees you.
+					<a href="https://formative.jmir.org/2025/1/e70594" target="_blank" rel="noopener">A 2025 paper in <em>JMIR Formative Research</em></a> describes dating apps as gamified the
+					way a casino tunes a slot machine: the odds are set so you keep playing, and you never
+					walk away empty-handed or fully satisfied. Match too easily and you'd delete the app.
+					Match too rarely and you'd give up. The app wants you coming back for more.
+				</p>
+				<p>
+					<a href="https://www.nature.com/articles/s41599-025-06301-w" target="_blank" rel="noopener">A 2026
+					study</a> found that men report higher addictive engagement with these apps than women do,
+					and that their engagement metrics track match counts, not actual meetings. The design rewards
+					swipes, not dates.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>It trains you for the wrong game</h2>
+				<p>
+					Time on an app makes you better at one thing: optimizing a profile. A sharper
+					bio. A more flattering photo. Sending canned openers. Those are not the skills that get you a
+					relationship. Most matches never lead to a meeting, and <a href="https://formative.jmir.org/2025/1/e70594" target="_blank" rel="noopener">the same research</a> notes that the
+					apps weaken the social skills you'll need in the real world.
+				</p>
+				<p>
+					So you can get good at the app and still freeze the second she's standing in front of
+					you. The app never asked that of you. It asked for a good photo. Meeting in person asks
+					for a muscle the app never let you train: reading the room, opening your mouth, and hearing
+					a real "no" without your body treating it as danger.
+				</p>
+				<p class="pull">
+					You're not undesirable. You've been stuck on a hamster wheel.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>My opinion, plainly</h2>
+				<p>
+					Delete the apps. Not because you're above them, but because time on them is toxic and
+					counterproductive. It trains the wrong skills, it wears down your self-esteem, and it
+					keeps you on your phone instead of out where the people are.
+				</p>
+				<p>Take the hours back. Go talk to strangers.</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>What to do instead</h2>
+				<p>
+					Let's name the real reason you're on the apps. Walking up to a woman in person feels
+					dangerous. You don't want to be that guy. I didn't either. That
+					fear means you care - but it's also what keeps you swiping instead of connecting.
+				</p>
+				<p>
+					I wish someone had told me this years earlier: creepiness has a formula. Hidden agenda
+					plus ignored signals. Wanting to talk to her isn't creepy.
+					Pretending you don't is where it gets weird. So before you say a word, ask yourself:
+				</p>
+				<p class="pull">
+					Is she open to connection? How does she respond to your approach?
+				</p>
+				<p>
+					Headphones in, closed body, short answers, mid-conversation with someone else: she's
+					already said no. Respect it and back off. Eyes up, off her phone, open to the room:
+					you have a green light to say hello. And hello can be as simple as: "Hi, I noticed you
+					and wanted to say hi. I'm Marcus." No cheesy pickup lines or party tricks required. 
+				</p>
+				<p>
+					<strong>This week's rep</strong> (and it's not the scary one): have one real
+					conversation, in person, with a woman you're <em>not</em> attracted to. A colleague, a
+					neighbour, the person who makes your coffee. Ask her what dating has been like for her.
+					Then listen. Zero stakes keeps you calm enough to actually practice. And
+					you'll hear first-hand what women experience from men, which will give you more compassion
+					when you do approach a woman you are attracted to.
+				</p>
+			</section>
+
+			<section class="content stack gap-4">
+				<h2>Rejection is a gift</h2>
+				<p>
+					The freeze you feel before saying hi is not a character flaw. It's an untrained nervous
+					system, and no app can train it for you. It lives in your body, not your head. So that's
+					where we train it: settle the response, then practice until rejection is information
+					instead of defeat.
+				</p>
+				<p>
+					No pickup lines. No creepiness. Just the training to walk up and start a conversation
+					with someone you're attracted to, out in the world the apps keep you scrolling past.
+				</p>
+				<p class="fine">
+					Sources: <a href="https://formative.jmir.org/2025/1/e70594" target="_blank" rel="noopener">Balki, "Are Dating App Algorithms Making Men Lonely and Does This Present a
+					Public Health Concern?", <em>JMIR Formative Research</em> (2025)</a>; <a href="https://www.nature.com/articles/s41599-025-06301-w" target="_blank" rel="noopener">Cai et al.,
+					<em>Humanities and Social Sciences Communications</em> (2026)</a>; <a href="https://www.swipestats.io/blog/tinder-study-80-20" target="_blank" rel="noopener">SwipeStats "Tinder 80/20
+					Study" (2026)</a>, which reports Hinge's 2017 like-distribution data; <a href="https://www.businessofapps.com/data/tinder-statistics/" target="_blank" rel="noopener">Business of Apps</a> / <a href="https://www.datingnews.com/apps-and-sites/dating-app-gender-ratio-statistics/" target="_blank" rel="noopener">DatingNews</a> gender-ratio estimates (2025); <a href="https://www.playerstime.com/reports/dating-apps-cost/" target="_blank" rel="noopener">Players Time,
+					Dating App Economy (2026)</a>; <a href="https://onlinelibrary.wiley.com/doi/10.1111/theo.12576" target="_blank" rel="noopener">Räsänen, "The grim view of online dating", <em>Theoria</em> (2025)</a>. Figures are directional.
+				</p>
+			</section>
+
+			<section id="get-the-one-pager" class="get stack gap-6">
+				<div class="content stack gap-4">
+					<h2>Get the free field note</h2>
+					<p>
+						Everything above is the why. The field note is the how: a read-the-room checklist,
+						the first sixty seconds word for word, a five-rung ladder of reps that starts with the
+						easy one, and a log to keep on your phone. <strong>Fuck Dating Apps: the field note.</strong>
+					</p>
+					<p class="fine">Drop your email and the PDF appears right here. I'll send a copy to your inbox too.</p>
+				</div>
+
+				<form id="onepager-form" class="get-form" novalidate>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" name="fields[name]" id="name" required placeholder="Your name" autocomplete="given-name" />
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="fields[email]" id="email" required placeholder="your@email.com" autocomplete="email" />
+					</div>
+					<!-- Which channel this signup came from — add ?src=telegram, ?src=ig, ?src=substack etc.
+					     to the link you share, and MailerLite records it in the "Lead source" custom field. -->
+					<input type="hidden" id="source" name="fields[lead_source]" value="website" />
+					<button type="submit" class="submit-button">Send me the field note →</button>
+					<p class="tiny">
+						By signing up you agree to receive the field note and a couple of useful follow-ups. Unsubscribe any time.
+					</p>
+					<div id="result" class="form-result"></div>
+					<div id="download" class="form-download">
+						<p><strong>Here it is.</strong> A copy is on its way to your inbox, too.</p>
+						<a class="download-link" href={onePagerPdf} download>Download the field note (PDF) →</a>
+					</div>
+				</form>
+			</section>
+
+			<section class="content stack gap-4 next-step">
+				{
+					webinar ? (
+						<>
+							<h2>Want to go deeper? Join the live session.</h2>
+							<p>
+								<strong>{webinar.title}</strong>: a free 45-minute live session on why you freeze
+								around women you like, and the training that moves it. We do rung 1 of the field note
+								together, live. {webinarDateLabel(webinar)}.
+							</p>
+							<div class="hero-cta">
+								<a class="cta" href={webinar.url}>
+									Save my spot
+									<Icon icon="arrow-right" size="1.2em" />
+								</a>
+							</div>
+						</>
+					) : (
+						<>
+							<h2>Want to go deeper? This is the training.</h2>
+							<p>
+								<strong>Authentic Approach</strong> is a 3-month 1:1 container: somatic tools to
+								settle the freeze, weekly real-world reps, and a coach in your corner for the
+								scary moments. No pickup lines. No creepiness.
+							</p>
+							<div class="hero-cta">
+								<a class="cta" href="/authentic-approach/">
+									Explore the container
+									<Icon icon="arrow-right" size="1.2em" />
+								</a>
+							</div>
+						</>
+					)
+				}
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<script is:inline define:vars={{ ML_ACCOUNT_ID, ML_FORM_ID }}>
+(function () {
+	/* MailerLite field-note delivery. ML_ACCOUNT_ID and ML_FORM_ID are injected at build time
+	   from src/config/webinar.ts (see fieldNoteFormId), so the form, and the email it triggers,
+	   follow the webinar schedule. */
+	var ACTION = 'https://assets.mailerlite.com/jsonp/' + ML_ACCOUNT_ID + '/forms/' + ML_FORM_ID + '/subscribe';
+
+	var form = document.getElementById('onepager-form');
+	var result = document.getElementById('result');
+	var download = document.getElementById('download');
+	var btn = form.querySelector('.submit-button');
+	var btnDefaultText = btn.textContent;
+
+	try {
+		var src = new URLSearchParams(window.location.search).get('src');
+		if (src) document.getElementById('source').value = src.slice(0, 40);
+	} catch (e) { /* older browser — leave as "website" */ }
+
+	function showResult(msg, isError) {
+		result.style.display = 'block';
+		result.textContent = msg;
+		result.classList.toggle('form-result-error', !!isError);
+	}
+
+	function showSuccess() {
+		showResult("You're in. The download is below, and a copy is heading to your inbox. If it's not there in five minutes, check Promotions or spam.", false);
+		download.style.display = 'flex';
+		btn.disabled = true;
+		btn.textContent = 'Sent ✓';
+	}
+
+	function resetButton() {
+		btn.disabled = false;
+		btn.textContent = btnDefaultText;
+	}
+
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+
+		var data = new FormData(form);
+		data.append('ml-submit', '1');
+		data.append('anticsrf', 'true');
+
+		btn.disabled = true;
+		btn.textContent = 'Sending…';
+		showResult('Please wait…', false);
+
+		fetch(ACTION, { method: 'POST', body: data })
+			.then(function (r) { return r.json(); })
+			.then(function (res) {
+				if (res && res.success === false) {
+					resetButton();
+					showResult("Something went wrong on my end. Try again, or email marcusianl@gmail.com and I'll send it by hand.", true);
+				} else {
+					showSuccess();
+				}
+			})
+			.catch(function () {
+				// Cross-origin or parsing hiccup — MailerLite still receives the POST.
+				// Retry opaquely, then confirm to the visitor.
+				fetch(ACTION, { method: 'POST', body: data, mode: 'no-cors' })
+					.then(function () {
+						showSuccess();
+					})
+					.catch(function () {
+						resetButton();
+						showResult("Couldn't reach the server. Check your connection and try again, or email marcusianl@gmail.com and I'll send it by hand.", true);
+					});
+			});
+	});
+})();
+</script>
+
+<style>
+	.swiper {
+		padding-top: 2rem;
+	}
+
+	.hero-cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.cta {
+		position: relative;
+		display: flex;
+		place-content: center;
+		align-items: center;
+		text-align: center;
+		padding: 0.56em 2em;
+		gap: 0.8em;
+		font-size: var(--text-lg);
+		color: var(--accent-text-over);
+		text-decoration: none;
+		line-height: 1.1;
+		border-radius: 999rem;
+		background: var(--gradient-accent-orange);
+		box-shadow: var(--shadow-md);
+		white-space: nowrap;
+	}
+
+	.cta:hover,
+	.cta:focus {
+		filter: brightness(1.05);
+	}
+
+	@media (min-width: 50em) {
+		.cta {
+			padding: 1.125rem 2.5rem;
+			font-size: var(--text-xl);
+		}
+	}
+
+	.cta-note {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		max-width: 40ch;
+		text-align: center;
+	}
+
+	.content {
+		max-width: 65ch;
+		margin-inline: auto;
+		width: 100%;
+		font-size: var(--text-md);
+		color: var(--gray-200);
+	}
+
+	.content h2,
+	.content h3 {
+		color: var(--gray-0);
+	}
+
+	.content h2 {
+		font-size: var(--text-2xl);
+	}
+
+	.content h3 {
+		font-size: var(--text-xl);
+	}
+
+	.fine {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		gap: 1rem;
+		max-width: 65rem;
+		margin-inline: auto;
+		width: 100%;
+	}
+
+	.stat {
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 1.5rem;
+		text-align: center;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.stat .stat-src {
+		display: block;
+		margin-top: 0.5rem;
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.stat-big {
+		font-family: var(--font-brand);
+		font-weight: 700;
+		font-size: var(--text-3xl);
+		color: var(--accent-regular);
+		margin-bottom: 0.5rem;
+	}
+
+	.stat p {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+
+	.get {
+		max-width: 48rem;
+		margin-inline: auto;
+		width: 100%;
+		scroll-margin-top: 2rem;
+	}
+
+	.get .content {
+		text-align: center;
+	}
+
+	.get .content h2 {
+		color: var(--gray-0);
+	}
+
+	.get-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		background: var(--gray-999_40);
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 2rem;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.get-form label {
+		font-weight: 600;
+		color: var(--gray-100);
+		font-size: var(--text-sm);
+	}
+
+	.get-form input {
+		font: inherit;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--gray-700);
+		border-radius: 0.75rem;
+		background: var(--gray-999);
+		color: var(--gray-0);
+	}
+
+	.get-form input:focus {
+		outline: 2px solid var(--accent-regular);
+		border-color: transparent;
+	}
+
+	.submit-button {
+		font: inherit;
+		font-weight: 600;
+		font-size: var(--text-lg);
+		color: var(--accent-text-over);
+		background: var(--gradient-accent-orange);
+		border: none;
+		border-radius: 999rem;
+		padding: 0.9rem 2rem;
+		cursor: pointer;
+		box-shadow: var(--shadow-md);
+	}
+
+	.submit-button:hover {
+		filter: brightness(1.05);
+	}
+
+	.submit-button:disabled {
+		cursor: default;
+		filter: none;
+		opacity: 0.75;
+	}
+
+	.tiny {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		text-align: center;
+	}
+
+	.form-result {
+		display: none;
+		padding: 0.85rem 1rem;
+		font-size: var(--text-sm);
+		border-radius: 0.75rem;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		color: var(--gray-200);
+		text-align: center;
+	}
+
+	.form-result-error {
+		background: rgba(196, 99, 63, 0.12);
+		border-color: var(--accent-regular);
+		color: var(--gray-0);
+	}
+
+	.form-download {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1.25rem;
+		border-radius: 0.75rem;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		text-align: center;
+		font-size: var(--text-sm);
+		color: var(--gray-200);
+	}
+
+	.download-link {
+		font-weight: 600;
+		font-size: var(--text-md);
+		color: var(--accent-text-over);
+		background: var(--gradient-accent-orange);
+		border-radius: 999rem;
+		padding: 0.75rem 1.75rem;
+		text-decoration: none;
+		box-shadow: var(--shadow-md);
+	}
+
+	.download-link:hover,
+	.download-link:focus {
+		filter: brightness(1.05);
+	}
+</style>
