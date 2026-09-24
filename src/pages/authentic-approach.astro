@@ -42,11 +42,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					If that sounds familiar, you're in the right place. I coach single men who want real
 					connection but struggle to actually approach.
 				</p>
-				<p>
-					Rejection feels unbearable.
-				</p>
-				<p>
-					You worry about coming off as creepy.
+				<p class="pull-quote">
+					<span class="accent">Rejection</span> feels unbearable.<br />
+					You worry about coming off as <span class="accent">creepy</span>.
 				</p>
 				<p>I get it, because I've been there.</p>
 				<p class="fine">
@@ -148,7 +146,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<section class="content stack gap-4">
 				<h2>Investment</h2>
 				<p>
-					<strong>3-month container - $2,222</strong> (paid in full), or
+					<strong>3-month container - $2,220</strong> (paid in full), or
 					<strong> 3 payments of $800</strong>.
 				</p>
 			</section>
@@ -169,25 +167,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<section class="content stack gap-4">
 				<h2>From people I've coached</h2>
 				<Testimonial name="Adam L" location="USA">
-					<p>"Marcus' training in direct, honest, and respectful communication has been a
-					transformative experience. Now, I have the confidence to approach women and talk to them
+					<p class="pull-quote">"Marcus' training in direct, honest, and respectful communication has
+					been a <span class="accent">transformative experience</span>.</p>
+					<p>Now, I have the confidence to approach women and talk to them
 					in a natural way, without feeling creepy or awkward. If a woman expresses that they're
 					not interested, it is so freeing to receive her 'no' with gratitude and respect - instead of
 					feeling rejected or taking it personally.</p>
-					&nbsp;
-					<p>This shift has made dating more fun than ever. Even when things don't go in a 
+					<p>This shift has made dating more fun than ever. Even when things don't go in a
 					romantic direction, I often end up making new friends and forming meaningful connections based
-					in authenticity and genuine mutual interest. Working with Marcus played a huge role in 
-					relieving my social anxiety and helping me live in the moment - taking action instead of staring 
+					in authenticity and genuine mutual interest. Working with Marcus played a huge role in
+					relieving my social anxiety and helping me live in the moment - taking action instead of staring
 					across the room wondering. I've never felt more alive."
 					</p>
 				</Testimonial>
 				<Testimonial name="Sandra" location="Finland" photo="/assets/sandra.jpg">
-					<p>"Marcus broadened my perspective on what intimacy can be. He invited me to explore my
-					deepest desires, opening me up for more pleasure and expression. I always felt safe,
-					seen and heard with him, as we unlocked insights into my relationship history, dynamics
-					and patterns.</p>
-					&nbsp;
+					<p class="pull-quote">"Marcus <span class="accent">broadened my perspective</span> on what
+					intimacy can be.</p>
+					<p>He invited me to explore my deepest desires, opening me up for more pleasure and
+					expression. I always felt safe, seen and heard with him, as we unlocked insights into my
+					relationship history, dynamics and patterns.</p>
 					<p>With greater respect for myself, now I am able to communicate more effectively, voicing
 					my desires and boundaries, needs and expectations. After working with Marcus, I feel
 					safer and more empowered in my connections."
@@ -267,6 +265,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	.fine {
 		font-size: var(--text-sm);
 		color: var(--gray-400);
+	}
+
+	/* A two-line, two-tone pull quote: bigger serif italic type breaks up the prose rhythm,
+	   with .accent picking out a word or phrase in the brand accent color. Reused inside
+	   testimonial blockquotes as the "lede" line, and once in body copy as a standalone beat. */
+	.pull-quote {
+		font-family: var(--font-brand);
+		font-style: italic;
+		font-weight: 600;
+		font-size: var(--text-lg);
+		line-height: 1.35;
+		color: var(--gray-0);
+	}
+
+	.pull-quote .accent {
+		color: var(--accent-regular);
+		font-style: normal;
+	}
+
+	@media (min-width: 50em) {
+		.pull-quote {
+			font-size: var(--text-xl);
+		}
+	}
+
+	/* Testimonial paragraphs are slotted into Testimonial.astro from here, so its own
+	   `.testimonial-content p` rule can't reach them (different scope) - space them here instead. */
+	:global(.testimonial-content p) {
+		margin-bottom: 1rem;
+	}
+
+	:global(.testimonial-content p:last-child) {
+		margin-bottom: 0;
 	}
 
 	.banner {
