@@ -34,6 +34,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <div id="result" class="form-result"></div>
 
                 </form>
+                <p class="email-direct">Prefer email? Write to <a href="mailto:marcus@marcuslevine.com">marcus@marcuslevine.com</a></p>
 			</section>
 			<section>
 				<h2 class="section-title">Ready to chat?</h2>
@@ -55,8 +56,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     const isDark = document.documentElement.classList.contains('theme-dark');
                     Cal.ns.discovery("ui", {
                         "cssVarsPerTheme": {
-                            "light": {"cal-brand": "#c4633f"},
-                            "dark": {"cal-brand": "#c4633f"}
+                            "light": {"cal-brand": "#1e3b2f"},
+                            "dark": {"cal-brand": "#c8a15a"}
                         },
                         "theme": isDark ? "dark" : "light",
                         "hideEventTypeDetails": false,
@@ -156,6 +157,12 @@ form.addEventListener('submit', function(e) {
 		text-align: center;
 	}
 
+	.email-direct {
+		margin-top: 1.5rem;
+		text-align: center;
+		color: var(--gray-300);
+	}
+
 	.contact-form {
 		display: flex;
 		flex-direction: column;
@@ -198,7 +205,7 @@ form.addEventListener('submit', function(e) {
 	.contact-form textarea:focus {
 		outline: none;
 		border-color: var(--accent-regular);
-		box-shadow: 0 0 0 3px rgba(0, 97, 28, 0.2);
+		box-shadow: 0 0 0 3px rgba(30, 59, 47, 0.2);
 	}
 
 	.contact-form input::placeholder,

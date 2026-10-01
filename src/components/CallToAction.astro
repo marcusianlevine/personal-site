@@ -21,12 +21,21 @@ const { href } = Astro.props;
 		line-height: 1.1;
 		border-radius: 999rem;
 		overflow: hidden;
-		background: var(--gradient-accent-orange);
+		background: var(--gradient-cta);
 		box-shadow: var(--shadow-md);
 		white-space: nowrap;
 	}
 
-	@media (min-width: 20em) {
+	/* Phones: keep the pill inside the text column (long labels + nowrap overflowed at 375px). */
+	@media (max-width: 49.99em) {
+		a {
+			max-width: 100%;
+			padding: 0.75em 1.4em;
+			font-size: var(--text-md);
+		}
+	}
+
+	@media (min-width: 30em) {
 		a {
 			font-size: var(--text-lg);
 		}

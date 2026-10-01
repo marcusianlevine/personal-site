@@ -69,6 +69,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				</p>
 			</section>
 
+			<div class="hero-cta mid-cta">
+				<CallToAction href="https://cal.com/marcuslevine/discovery">
+					Book a free discovery call
+					<Icon icon="calendar" size="1.2em" />
+				</CallToAction>
+			</div>
+
 			<section class="content stack gap-4">
 				<h2>Who this is for</h2>
 				<p>
@@ -139,6 +146,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				</ul>
 			</section>
 
+			<div class="hero-cta mid-cta">
+				<CallToAction href="https://cal.com/marcuslevine/discovery">
+					Book a free discovery call
+					<Icon icon="calendar" size="1.2em" />
+				</CallToAction>
+			</div>
+
 			<section class="banner">
 				<p>"Rejection is <span>information</span>, not failure."</p>
 			</section>
@@ -157,16 +171,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					In week one we take two baselines: two short questionnaires researchers use to track social anxiety and fear of being judged (the SIAS and BFNE-S, if you like acronyms), plus a simple count of how many people you approach each week. We take them again at week eight and week twelve.
 				</p>
 				<p>
-					Show up to <b>every session</b>, do <b>every weekly challenge</b>, and keep your journal for all twelve weeks. If by the end <b>neither your scores nor your weekly approach count has moved</b>, I <b>refund you in full</b>.
+					Show up to <b>every session</b>, do <b>every weekly challenge</b>, and <b>keep your journal</b> for all twelve weeks. 
+				</p>
+				<p>
+					If by the end <b>neither your scores nor your weekly approach count has moved, I'll refund you in full</b>.
 				</p>
 				<p class="guarantee-fine">
 					This isn't a promise about any particular woman. Nobody honest can make that one. It's a promise about the training: if you do it and it doesn't move you, you don't pay for it.
 				</p>
 			</section>
 
+			<div class="hero-cta mid-cta">
+				<CallToAction href="https://cal.com/marcuslevine/discovery">
+					Book a free discovery call
+					<Icon icon="calendar" size="1.2em" />
+				</CallToAction>
+			</div>
+
 			<section class="content stack gap-4">
 				<h2>From people I've coached</h2>
-				<Testimonial name="Adam L" location="USA">
+				<Testimonial name="Adam L, 33" location="USA">
 					<p class="pull-quote">"Marcus' training in direct, honest, and respectful communication has
 					been a <span class="accent">transformative experience</span>.</p>
 					<p>Now, I have the confidence to approach women and talk to them
@@ -178,17 +202,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					in authenticity and genuine mutual interest. Working with Marcus played a huge role in
 					relieving my social anxiety and helping me live in the moment - taking action instead of staring
 					across the room wondering. I've never felt more alive."
-					</p>
-				</Testimonial>
-				<Testimonial name="Sandra" location="Finland" photo="/assets/sandra.jpg">
-					<p class="pull-quote">"Marcus <span class="accent">broadened my perspective</span> on what
-					intimacy can be.</p>
-					<p>He invited me to explore my deepest desires, opening me up for more pleasure and
-					expression. I always felt safe, seen and heard with him, as we unlocked insights into my
-					relationship history, dynamics and patterns.</p>
-					<p>With greater respect for myself, now I am able to communicate more effectively, voicing
-					my desires and boundaries, needs and expectations. After working with Marcus, I feel
-					safer and more empowered in my connections."
 					</p>
 				</Testimonial>
 			</section>
@@ -222,6 +235,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		align-items: center;
 		gap: 0.75rem;
 		margin-top: 1rem;
+	}
+
+	.mid-cta {
+		margin-block: 0.5rem;
 	}
 
 	.cta-note {
@@ -336,7 +353,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 
 	.guarantee h2 {
-		color: var(--accent-regular);
+		color: var(--accent-light);
 		font-size: var(--text-xl);
 		margin-bottom: 1rem;
 		font-weight: 700;

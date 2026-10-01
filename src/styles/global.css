@@ -1,31 +1,38 @@
 /* Global variables */
 :root {
 	/* Colors */
-	/* Warm ink-on-cream scale (coaching brand) */
-	--gray-0: #2b2b28;
-	--gray-50: #33322d;
-	--gray-100: #3d3b34;
-	--gray-200: #545147;
-	--gray-300: #6e6a5e;
-	--gray-400: #837e6f;
-	--gray-500: #9b9482;
-	--gray-600: #b3ab96;
-	--gray-700: #cfc5ac;
-	--gray-800: #e7ddc6;
-	--gray-900: #f3e9d7;
-	--gray-999-basis: 38, 66%, 94%;
+	/* Forest-ink-on-ivory scale (brand: forest green, soft gold, ivory) */
+	--gray-0: #1e3b2f;
+	--gray-50: #294438;
+	--gray-100: #385145;
+	--gray-200: #4d6357;
+	--gray-300: #637569;
+	--gray-400: #74847a;
+	--gray-500: #96a094;
+	--gray-600: #abb2a6;
+	--gray-700: #c5c7bb;
+	--gray-800: #dad9cd;
+	--gray-900: #e7e4d8;
+	--gray-999-basis: 43, 46%, 92%;
 	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
-	--gray-999: #faf3e7;
+	--gray-999: #f4efe3;
 
-	--accent-light: #e8b4a0;
-	--accent-regular: #c4633f;
-	--accent-dark: #a34f30;
-	--accent-overlay: hsla(16, 51%, 51%, 0.33);
+	--accent-light: #c8a15a;
+	--accent-regular: #86652a;
+	--accent-dark: #6b5122;
+	--accent-overlay: hsla(39, 50%, 57%, 0.33);
 	--accent-subtle-overlay: var(--accent-overlay);
 	--accent-text-over: var(--gray-999);
 
+	--forest: #1e3b2f;
+	--forest-light: #2c5443;
+	--gold: #c8a15a;
 	--sage: #8a9b6e;
-	--blush: #e8b4a0;
+
+	/* Yin-yang logo: green half + gold half in both themes */
+	--logo-yin: #1e3b2f;
+	--logo-yang: #c8a15a;
+	--logo-ring: #1e3b2f;
 
 	--link-color: var(--accent-regular);
 
@@ -40,12 +47,8 @@
 		var(--gradient-stop-2),
 		var(--gradient-stop-3)
 	);
-	--gradient-accent-orange: linear-gradient(
-		150deg,
-		var(--accent-light),
-		var(--accent-regular),
-		var(--accent-dark)
-	);
+	/* Primary call-to-action fill: forest green on ivory (gold in dark mode) */
+	--gradient-cta: linear-gradient(150deg, var(--forest-light), var(--forest));
 	--gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
 
 	/* Shadows */
@@ -82,37 +85,37 @@
 }
 
 :root.theme-dark {
-	--gray-0: #faf3e7;
-	--gray-50: #f3e9d7;
-	--gray-100: #e7ddc6;
-	--gray-200: #cfc5ac;
-	--gray-300: #b3ab96;
-	--gray-400: #9b9482;
-	--gray-500: #837e6f;
-	--gray-600: #6e6a5e;
-	--gray-700: #54514a;
-	--gray-800: #3d3b34;
-	--gray-900: #2b2b28;
-	--gray-999-basis: 45, 4%, 12%;
-	--gray-999: #201f1c;
+	--gray-0: #f4efe3;
+	--gray-50: #e9e5d9;
+	--gray-100: #d9d7cb;
+	--gray-200: #c2c3b7;
+	--gray-300: #a3a69c;
+	--gray-400: #8c9288;
+	--gray-500: #767e74;
+	--gray-600: #606a60;
+	--gray-700: #445149;
+	--gray-800: #2e3d35;
+	--gray-900: #203129;
+	--gray-999-basis: 153, 32%, 11%;
+	--gray-999: #13251d;
 
-	--accent-light: #a34f30;
-	--accent-regular: #c4633f;
-	--accent-dark: #e8b4a0;
-	--accent-overlay: hsla(16, 51%, 51%, 0.33);
-	--accent-subtle-overlay: hsla(16, 51%, 40%, 0.33);
-	--accent-text-over: #faf3e7;
+	--accent-light: #86652a;
+	--accent-regular: #c8a15a;
+	--accent-dark: #ddbf85;
+	--accent-overlay: hsla(39, 50%, 57%, 0.33);
+	--accent-subtle-overlay: hsla(39, 50%, 45%, 0.33);
+	--accent-text-over: #1e3b2f;
+
+	/* Lighter green so the green half still reads on the dark ground */
+	--logo-yin: #3f7a5c;
+	--logo-yang: #c8a15a;
+	--logo-ring: #c8a15a;
 
 	--link-color: var(--accent-dark);
 
-	--gradient-stop-1: #a34f30;
+	--gradient-stop-1: #86652a;
 	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
-	--gradient-accent-orange: linear-gradient(
-		150deg,
-		#e8b4a0,
-		var(--accent-regular),
-		var(--accent-light)
-	);
+	--gradient-cta: linear-gradient(150deg, #ddbf85, #c8a15a, #a8843f);
 	--gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
 
 	--shadow-sm:

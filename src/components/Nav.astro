@@ -14,13 +14,8 @@ const textLinks: { label: string; href: string }[] = [
 
 /** Icon links to social media — edit these with links to your profiles! */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
-	{ label: 'LinkedIn', href: 'https://linkedin.com/in/marcuslevine', icon: 'linkedin-logo' },
-	{ label: 'Twitter', href: 'https://twitter.com/marcusianl', icon: 'twitter-logo' },
+	{ label: 'Instagram', href: 'https://instagram.com/marcuslevine', icon: 'instagram-logo' },
 	{ label: 'Substack', href: 'https://marcuslevine.substack.com', icon: 'substack-logo' },
-	{ label: 'GitHub', href: 'https://github.com/marcusianlevine', icon: 'github-logo' },
-	// { label: 'YouTube', href: 'https://www.youtube.com/@marcusianl/', icon: 'youtube-logo' },
-	{ label: 'Email', href: 'mailto:chanterelle.services@gmail.com', icon: 'paper-plane-tilt' },
-	{ label: 'Calendar', href: 'https://cal.com/marcuslevine', icon: 'calendar' },
 ];
 
 /** Test if a link is pointing to the current page. */
@@ -35,7 +30,7 @@ const isCurrentPage = (href: string) => {
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<Icon icon="yin-yang" color="var(--accent-regular)" size="1.6em" gradient />
+			<Icon icon="yin-yang" size="1.6em" />
 			Marcus Levine
 		</a>
 		<menu-button>
