@@ -138,11 +138,10 @@ function render(doc, variant, tpl) {
 	const isCta = (n) => /^Ready to actually meet someone\?/i.test(n);
 	const isDark = (n) => /^The freeze/i.test(n);
 	const isBlue = (n) => /^The ladder/i.test(n);
-	const isLog = (n) => /^(Rep|Approach) log/i.test(n);
+	const isLog = (n) => /^(Rep|Approach|Exercise) log/i.test(n);
 
-	const sectionsHtml = doc.sections
-		.filter((s) => !special.has(s.name) && !isCta(s.name))
-		.map((s) => {
+	const body = doc.sections.filter((s) => !special.has(s.name) && !isCta(s.name));
+	const parts = body.map((s) => {
 			if (isDark(s.name)) return `<div class="opinion">
 	<h3>${inline(s.name)}</h3>
 ${blocks(s.blocks)}
@@ -155,8 +154,16 @@ ${blocks(s.blocks)}
 ${blocks(s.blocks, { tableClass: 'log' })}`;
 			return `<h2>${inline(s.name)}</h2>
 ${blocks(s.blocks)}`;
-		})
-		.join('\n\n');
+		});
+	// The ladder and the freeze sit side by side when they are adjacent.
+	const out = [];
+	for (let i = 0; i < body.length; i++) {
+		if (isBlue(body[i].name) && body[i + 1] && isDark(body[i + 1].name)) {
+			out.push(`<div class="two-col">\n${parts[i]}\n${parts[i + 1]}\n</div>`);
+			i++;
+		} else out.push(parts[i]);
+	}
+	const sectionsHtml = out.join('\n\n');
 
 	const cta = doc.sections.find((s) => isCta(s.name) && s.name.toLowerCase().includes(`(${variant.key})`));
 	if (!cta) throw new Error(`Missing CTA section for variant "${variant.key}"`);
@@ -178,18 +185,18 @@ ${blocks(s.blocks)}`;
 		.replace('{{tagline}}', esc(doc.tagline))
 		.replace('{{opening}}', blocks(need('Opening').blocks))
 		.replace('{{stages_title}}', inline(stagesTitle))
-		.replace('{{stages_lede}}', inline(stagesLede))
-		.replace('{{stages_caption}}', inline(stagesCaption))
+		.replace('{{stages_lede}}', stagesLede ? `<p class="lede">${inline(stagesLede)}</p>` : '')
+		.replace('{{stages_caption}}', stagesCaption ? `<p class="cap">${inline(stagesCaption)}</p>` : '')
 		.replace('{{sections}}', sectionsHtml)
 		.replace('{{cta_title}}', inline(ctaTitle))
 		.replace('{{cta_body}}', blocks(cta.blocks.filter((b) => b.type !== 'list')))
 		.replace('{{cta_links}}', ctaLinks)
-		.replace('{{sources}}', sources);
+		.replace('{{sources}}', sources ? `<p class="fine">${sources}</p>` : '');
 }
 
 // ---------- main ----------
 const footer = `
-	<div style="width:100%;font-family:'Work Sans',system-ui,sans-serif;font-size:7.5pt;color:#8A857A;
+	<div style="width:100%;font-family:'Karla',Arial,sans-serif;font-size:7.5pt;color:#626558;
 	            padding:0 13mm;display:flex;justify-content:space-between;">
 		<span>A free field note by Marcus Levine, coach &amp; bodyworker · marcuslevine.com</span>
 		<span>Page <span class="pageNumber"></span> / <span class="totalPages"></span></span>
